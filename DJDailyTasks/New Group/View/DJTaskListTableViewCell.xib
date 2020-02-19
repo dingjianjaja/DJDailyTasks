@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DJTaskListTableViewCell" id="KGk-i7-Jjw" customClass="DJTaskListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPI-kY-g0f">
+                        <rect key="frame" x="20" y="29.5" width="51" height="31"/>
+                        <connections>
+                            <action selector="switchChangeAction:" destination="KGk-i7-Jjw" eventType="valueChanged" id="byV-Vi-u1w"/>
+                        </connections>
+                    </switch>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s6q-gi-qvc">
+                        <rect key="frame" x="85" y="12" width="270" height="66"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="5Rb-lu-6Gh"/>
+                        </constraints>
+                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="15c-hJ-qdi"/>
+                        </connections>
+                    </textView>
+                </subviews>
+                <color key="backgroundColor" red="0.82234413693442099" green="0.91481136658031093" blue="0.90515962008343931" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="s6q-gi-qvc" firstAttribute="leading" secondItem="vPI-kY-g0f" secondAttribute="trailing" constant="16" id="5Ly-Wb-80X"/>
+                    <constraint firstItem="s6q-gi-qvc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="9qK-oH-ATP"/>
+                    <constraint firstItem="vPI-kY-g0f" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KHn-gu-Qji"/>
+                    <constraint firstItem="s6q-gi-qvc" firstAttribute="centerY" secondItem="vPI-kY-g0f" secondAttribute="centerY" id="WjI-kH-z3p"/>
+                    <constraint firstItem="vPI-kY-g0f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Xeb-QE-3WK"/>
+                    <constraint firstAttribute="bottom" secondItem="s6q-gi-qvc" secondAttribute="bottom" constant="12" id="f7c-FJ-DmG"/>
+                    <constraint firstAttribute="trailing" secondItem="s6q-gi-qvc" secondAttribute="trailing" constant="20" id="zXt-Iy-mkd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="0.62183648767605637" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="isDoneSwitch" destination="vPI-kY-g0f" id="WKV-eE-efA"/>
+                <outlet property="titleTextV" destination="s6q-gi-qvc" id="mBo-xT-3pw"/>
+            </connections>
+            <point key="canvasLocation" x="180" y="163"/>
+        </tableViewCell>
+    </objects>
+</document>
