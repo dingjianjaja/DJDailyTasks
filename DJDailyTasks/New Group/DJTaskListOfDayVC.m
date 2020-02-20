@@ -134,6 +134,9 @@
     model.isDone = switchState;
 }
 
+
+
+
 #pragma mark -- lazyloading
 - (NSMutableArray *)dataArr{
     if (!_dataArr) {

@@ -24,13 +24,13 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"今天" style:UIBarButtonItemStyleDone target:self action:@selector(scrollToTodayAction)];
     
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:100 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:99 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 
 #pragma mark -- private method
 - (void)scrollToTodayAction{
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:100 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:99 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 
@@ -50,7 +50,20 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseID];
     }
-    cell.textLabel.text = self.dataArr[indexPath.row];
+    NSString *dateStr = self.dataArr[indexPath.row];
+    cell.textLabel.text = dateStr;
+    
+    NSDate *date = [NSDate dateWithString:dateStr format:@"yyyy-MM-dd"];
+    if ([date isToday]) {
+        cell.detailTextLabel.text = @"今天";
+    }else{
+        cell.detailTextLabel.text = @"";
+    }
+    if (date.weekday == 1 || date.weekday == 7) {
+        cell.contentView.backgroundColor = [UIColor systemPinkColor];
+    }else{
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+    }
     return cell;
 }
 
