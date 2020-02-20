@@ -12,6 +12,7 @@
 @interface DJDateListVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -20,8 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"今天" style:UIBarButtonItemStyleDone target:self action:@selector(scrollToTodayAction)];
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:100 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
+
+#pragma mark -- private method
+- (void)scrollToTodayAction{
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:100 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
 
 
 
@@ -47,16 +57,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DJTaskListOfDayVC *vc = [[DJTaskListOfDayVC alloc] init];
+    vc.currentDateStr = self.dataArr[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+
 
 
 #pragma mark -- lazyloading
 - (NSMutableArray *)dataArr{
     if (!_dataArr) {
         _dataArr = [NSMutableArray array];
+        NSDate *dateNow = [NSDate date];
+        [_dataArr addObject:[dateNow stringWithFormat:@"yyyy-MM-dd"]];
+        for (int i = 1; i < 100; i++) {
+            NSDate *preDate = [dateNow dateByAddingDays:-1 * i];
+            [_dataArr insertObject:[preDate stringWithFormat:@"yyyy-MM-dd"] atIndex:0];
+            NSDate *afterDate = [dateNow dateByAddingDays:i];
+            [_dataArr insertObject:[afterDate stringWithFormat:@"yyyy-MM-dd"] atIndex:_dataArr.count];
+        }
     }
-    _dataArr = [NSMutableArray arrayWithArray:@[@"1",@"2",@"3",@"4",@"5"]];
+    
     return _dataArr;
 }
 

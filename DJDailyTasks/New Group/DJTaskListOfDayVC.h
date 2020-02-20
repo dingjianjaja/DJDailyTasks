@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DJTaskListOfDayVC : UIViewController
 
+@property (nonatomic, retain)NSString *currentDateStr;
+
 @end
 
 NS_ASSUME_NONNULL_END

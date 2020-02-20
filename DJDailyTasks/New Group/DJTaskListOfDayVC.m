@@ -44,6 +44,8 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskListModel"
                                               inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(dateStr LIKE %@)",self.currentDateStr];
+    [fetchRequest setPredicate:predicate];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     self.dataArr = [NSMutableArray arrayWithArray:fetchedObjects];
@@ -51,14 +53,24 @@
 }
 
 
+- (void)coredataArr:(NSMutableArray *)arr removeModel:(TaskListModel *)model{
+    [arr removeObject:model];
+    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
+    [context deleteObject:model];
+    [appDelegate saveContext];
+}
+
 #pragma mark -- actions
 - (void)addTaskAction{
     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     TaskListModel *newTaskM = [NSEntityDescription insertNewObjectForEntityForName:@"TaskListModel" inManagedObjectContext:appDelegate.persistentContainer.viewContext];
-    newTaskM.title = @"我是第一条备忘录";
+    newTaskM.title = @"";
     newTaskM.isDone = NO;
+    newTaskM.dateStr = self.currentDateStr;
     [appDelegate saveContext];
-    [self getData];
+    [self.dataArr addObject:newTaskM];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.dataArr.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
 
@@ -88,14 +100,38 @@
     
 }
 
+
+
+- ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //删除
+    UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        [self coredataArr:self.dataArr removeModel:self.dataArr[indexPath.row]];
+        completionHandler (YES);
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    }];
+    deleteRowAction.title = @"删除";
+    deleteRowAction.backgroundColor = [UIColor redColor];
+    
+    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction]];
+    return config;
+}
+
+
+
+
+
+
 #pragma mark -- taskListCellDelegate
 - (void)taskListCell:(DJTaskListTableViewCell *)taskListCell titleInputDone:(NSString *)titleText{
-    
-    NSLog(@"%@",titleText);
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:taskListCell];
+    TaskListModel *model = self.dataArr[indexPath.row];
+    model.title = titleText;
 }
 
 - (void)taskListCell:(DJTaskListTableViewCell *)taskListCell switchChange:(BOOL)switchState{
-    NSLog(@"%d",switchState);
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:taskListCell];
+    TaskListModel *model = self.dataArr[indexPath.row];
+    model.isDone = switchState;
 }
 
 #pragma mark -- lazyloading

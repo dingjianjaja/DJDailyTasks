@@ -17,14 +17,12 @@
 }
 
 - (IBAction)switchChangeAction:(UISwitch *)sender {
-    NSLog(@"%d",sender.on);
     if ([self.delegate respondsToSelector:@selector(taskListCell:switchChange:)]) {
         [self.delegate taskListCell:self switchChange:sender.on];
     }
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView{
-    NSLog(@"%@",textView.text);
     if ([self.delegate respondsToSelector:@selector(taskListCell:titleInputDone:)]) {
         [self.delegate taskListCell:self titleInputDone:textView.text];
     }
