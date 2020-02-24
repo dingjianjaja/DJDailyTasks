@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)taskListCell:(DJTaskListTableViewCell *)taskListCell switchChange:(BOOL)switchState;
 
 - (void)taskListCell:(DJTaskListTableViewCell *)taskListCell titleInputDone:(NSString *)titleText;
+- (void)taskListCellBeginEditing:(DJTaskListTableViewCell *)taskListCell;
 
 @end
 

@@ -15,6 +15,8 @@
 
 @property (nonatomic, retain)NSMutableArray<TaskListModel*> *dataArr;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keybordBgViewH;
+@property (nonatomic, retain)NSIndexPath *currentEditingIndexPath;
 
 @end
 
@@ -22,16 +24,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    // 监听键盘的弹起和收回
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleDone target:self action:@selector(addTaskAction)];
     
     [self getData];
     
 }
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    
+    
+    
+    
     [appDelegate saveContext];
 }
 
@@ -59,6 +77,29 @@
     NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
     [context deleteObject:model];
     [appDelegate saveContext];
+}
+
+- (void)keyBoardWillShow:(NSNotification *)notification{
+    // 获取键盘高度
+    CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    // 获取键盘弹出时间
+    double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    // 设置tableview动画
+    [UIView animateWithDuration:duration animations:^{
+        self.keybordBgViewH.constant = keyboardRect.size.height - 48;
+    } completion:^(BOOL finished) {
+        [self.tableView scrollToRowAtIndexPath:self.currentEditingIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }];
+    
+}
+
+- (void)keyBoardWillHidden:(NSNotification *)notification{
+    // 获取键盘弹出时间
+    double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    // 设置tableview动画
+    [UIView animateWithDuration:duration animations:^{
+        self.keybordBgViewH.constant = 0;
+    }];
 }
 
 #pragma mark -- actions
@@ -134,6 +175,9 @@
     model.isDone = switchState;
 }
 
+- (void)taskListCellBeginEditing:(DJTaskListTableViewCell *)taskListCell{
+    self.currentEditingIndexPath = [self.tableView indexPathForCell:taskListCell];
+}
 
 
 

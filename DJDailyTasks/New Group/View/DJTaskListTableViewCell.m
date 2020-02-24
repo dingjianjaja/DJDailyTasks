@@ -35,6 +35,12 @@
     }
 }
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    if ([self.delegate respondsToSelector:@selector(taskListCellBeginEditing:)]) {
+        [self.delegate taskListCellBeginEditing:self];
+    }
+    return YES;
+}
 
 -(void)dismissKeyBoard{
     [self.titleTextV resignFirstResponder];
