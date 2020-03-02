@@ -46,10 +46,6 @@
     [super viewWillDisappear:animated];
     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
-    
-    
-    
-    
     [appDelegate saveContext];
 }
 
@@ -109,6 +105,9 @@
     newTaskM.title = @"";
     newTaskM.isDone = NO;
     newTaskM.dateStr = self.currentDateStr;
+    
+    // 添加到日期类
+    
     [appDelegate saveContext];
     [self.dataArr addObject:newTaskM];
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.dataArr.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];

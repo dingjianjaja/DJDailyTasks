@@ -9,6 +9,9 @@
 #import "DJDateListVC.h"
 #import "DJTaskListOfDayVC.h"
 
+#import "AppDelegate.h"
+#import "DateListModel+CoreDataProperties.h"
+
 @interface DJDateListVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
@@ -74,6 +77,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DJTaskListOfDayVC *vc = [[DJTaskListOfDayVC alloc] init];
     vc.currentDateStr = self.dataArr[indexPath.row];
+    
+    // 点击当天的时候如果没有当天的数据，创建
+    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DateListModel"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(dateStr LIKE %@)",@""];
+    [fetchRequest setPredicate:predicate];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    DateListModel *DateModel;
+    if (fetchedObjects.count == 0) {
+        // 创建
+        DateModel = [NSEntityDescription insertNewObjectForEntityForName:@"DateListModel" inManagedObjectContext:appDelegate.persistentContainer.viewContext];
+        DateModel.dateStr = self.dataArr[indexPath.row];
+        DateModel.completionLevel = 0.0;
+        [appDelegate saveContext];
+    }else{
+        DateModel = fetchedObjects.firstObject;
+    }
+
+    vc.dateModel = DateModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
