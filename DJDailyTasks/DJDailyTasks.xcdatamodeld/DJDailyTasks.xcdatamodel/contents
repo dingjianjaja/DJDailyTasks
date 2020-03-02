@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="DateListModel" representedClassName="DateListModel" syncable="YES" codeGenerationType="class">
         <attribute name="completionLevel" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="dateStr" optional="YES" attributeType="String"/>
@@ -11,7 +11,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="TaskListModel" positionX="-63" positionY="-18" width="128" height="88"/>
         <element name="DateListModel" positionX="-63" positionY="9" width="128" height="88"/>
+        <element name="TaskListModel" positionX="-63" positionY="-18" width="128" height="88"/>
     </elements>
 </model>

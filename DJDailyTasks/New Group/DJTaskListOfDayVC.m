@@ -42,9 +42,30 @@
     
 }
 
+- (void)didMoveToParentViewController:(UIViewController *)parent{
+    [super didMoveToParentViewController:parent];
+    if (parent == NULL) {
+        self.refreshDateBlcok();
+    }
+    
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    // 计算出任务完成比例
+    NSInteger finishTaskNum = 0;
+    for (TaskListModel *taskModel in self.dataArr) {
+        if (taskModel.isDone) {
+            finishTaskNum++;
+        }
+    }
+    if (self.dataArr.count == 0) {
+        self.dateModel.completionLevel = 0;
+    }else{
+        self.dateModel.completionLevel = finishTaskNum * 1.0 / self.dataArr.count;
+    }
     
     [appDelegate saveContext];
 }

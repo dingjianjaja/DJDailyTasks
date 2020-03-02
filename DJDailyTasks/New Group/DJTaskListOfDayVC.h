@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DateListModel+CoreDataProperties.h"
 
+typedef void(^RefreshDateCellBlock)(void);
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DJTaskListOfDayVC : UIViewController
@@ -16,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain)NSString *currentDateStr;
 
 @property (nonatomic, retain)DateListModel *dateModel;
+
+@property (copy, nonatomic)RefreshDateCellBlock refreshDateBlcok;
 
 @end
 
