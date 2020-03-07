@@ -1,5 +1,9 @@
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
+#import "DJCalendarHeader.h"
+
+#import "DateListModel+CoreDataClass.h"
+#import "NSDate+DJAdd.h"
 
 @interface SceneDelegate ()
 
@@ -9,9 +13,41 @@
 
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions  API_AVAILABLE(ios(13.0)){
-    // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-    // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-    // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+    if (scene) {
+        SSCalendarAnnualViewController *vc = [[SSCalendarAnnualViewController alloc]initWithEvents:[self generateEvents]];
+        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
+
+        UIWindowScene *windowScene = (UIWindowScene *)scene;
+        self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+        self.window.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [self.window setRootViewController:navVC];
+        [self.window makeKeyWindow];
+    }
+}
+
+- (NSArray<SSEvent*> *)generateEvents{
+    NSMutableArray *events = [NSMutableArray array];
+    
+    // 查出已经有记录的日期
+    // 查询是否已创建数据
+    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DateListModel"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (DateListModel *dateModel in fetchedObjects) {
+        NSDate *date = [NSDate dateWithString:dateModel.dateStr format:@"yyyy-MM-dd"];
+        SSEvent *event = [[SSEvent alloc] init];
+        event.startDate = date;
+        [events addObject:event];
+    }
+    
+    return events;
 }
 
 

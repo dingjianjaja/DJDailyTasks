@@ -7,17 +7,57 @@
 //
 
 #import "AppDelegate.h"
+#import "DJCalendarHeader.h"
+
+#import "DateListModel+CoreDataClass.h"
 
 @interface AppDelegate ()
 
 @end
 
+
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    if (@available(iOS 13, *)) {
+          
+    } else {
+        SSCalendarAnnualViewController *vc = [[SSCalendarAnnualViewController alloc]initWithEvents:[self generateEvents]];
+
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self.window setRootViewController:navVC];
+        [self.window makeKeyWindow];
+    }
+    
     return YES;
+}
+
+
+- (NSArray<SSEvent*> *)generateEvents{
+    NSMutableArray *events = [NSMutableArray array];
+    
+    // 查出已经有记录的日期
+    // 查询是否已创建数据
+    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DateListModel"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (DateListModel *dateModel in fetchedObjects) {
+        NSDate *date = [NSDate dateWithString:dateModel.dateStr format:@"yyyy-MM-dd"];
+        SSEvent *event = [[SSEvent alloc] init];
+        event.startDate = date;
+        [events addObject:event];
+    }
+    
+    return events;
 }
 
 

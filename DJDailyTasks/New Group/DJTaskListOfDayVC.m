@@ -45,7 +45,9 @@
 - (void)didMoveToParentViewController:(UIViewController *)parent{
     [super didMoveToParentViewController:parent];
     if (parent == NULL) {
-        self.refreshDateBlcok();
+        if (self.refreshDateBlcok) {
+            self.refreshDateBlcok();
+        }
     }
     
 }
