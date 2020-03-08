@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="DateListModel" representedClassName="DateListModel" syncable="YES" codeGenerationType="class">
         <attribute name="completionLevel" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateStr" optional="YES" attributeType="String"/>
         <relationship name="tasks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskListModel"/>
     </entity>
@@ -11,7 +12,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="DateListModel" positionX="-63" positionY="9" width="128" height="88"/>
+        <element name="DateListModel" positionX="-63" positionY="9" width="128" height="103"/>
         <element name="TaskListModel" positionX="-63" positionY="-18" width="128" height="88"/>
     </elements>
 </model>

@@ -199,20 +199,20 @@
 		F04C52762413F2E300F91A88 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F04C52772413F2E300F91A88 /* SSDayNode.h */,
-				F04C52782413F2E300F91A88 /* SSCache.m */,
-				F04C52792413F2E300F91A88 /* SSMonthNode.m */,
-				F04C527A2413F2E400F91A88 /* SSEvent.m */,
-				F04C527B2413F2E400F91A88 /* SSCalendarCountCache.h */,
-				F04C527C2413F2E400F91A88 /* SSCalendarCache.h */,
-				F04C527D2413F2E400F91A88 /* SSYearNode.h */,
-				F04C527E2413F2E400F91A88 /* SSDayNode.m */,
-				F04C527F2413F2E400F91A88 /* SSMonthNode.h */,
 				F04C52802413F2E400F91A88 /* SSCache.h */,
-				F04C52812413F2E400F91A88 /* SSCalendarCountCache.m */,
-				F04C52822413F2E400F91A88 /* SSEvent.h */,
-				F04C52832413F2E400F91A88 /* SSYearNode.m */,
+				F04C52782413F2E300F91A88 /* SSCache.m */,
+				F04C527C2413F2E400F91A88 /* SSCalendarCache.h */,
 				F04C52842413F2E400F91A88 /* SSCalendarCache.m */,
+				F04C527B2413F2E400F91A88 /* SSCalendarCountCache.h */,
+				F04C52812413F2E400F91A88 /* SSCalendarCountCache.m */,
+				F04C52772413F2E300F91A88 /* SSDayNode.h */,
+				F04C527E2413F2E400F91A88 /* SSDayNode.m */,
+				F04C52822413F2E400F91A88 /* SSEvent.h */,
+				F04C527A2413F2E400F91A88 /* SSEvent.m */,
+				F04C527F2413F2E400F91A88 /* SSMonthNode.h */,
+				F04C52792413F2E300F91A88 /* SSMonthNode.m */,
+				F04C527D2413F2E400F91A88 /* SSYearNode.h */,
+				F04C52832413F2E400F91A88 /* SSYearNode.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,8 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				F04C52882413F2E400F91A88 /* SSCalendarMonthlyViewController.h */,
-				F04C52892413F2E400F91A88 /* SSCalendarMonthlyViewController.xib */,
 				F04C528A2413F2E400F91A88 /* SSCalendarMonthlyViewController.m */,
+				F04C52892413F2E400F91A88 /* SSCalendarMonthlyViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -301,8 +301,8 @@
 		F04C529A2413F2E400F91A88 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F04C529B2413F2E400F91A88 /* SSCalendarAnnualViewController.m */,
 				F04C529C2413F2E400F91A88 /* SSCalendarAnnualViewController.h */,
+				F04C529B2413F2E400F91A88 /* SSCalendarAnnualViewController.m */,
 				F04C529D2413F2E400F91A88 /* SSCalendarAnnualViewController.xib */,
 			);
 			path = ViewControllers;
@@ -383,14 +383,14 @@
 		F04C52B82413F2E400F91A88 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F04C52B92413F2E400F91A88 /* SSCalendarWeekViewController.m */,
 				F04C52BA2413F2E400F91A88 /* SSCalendarDayViewController.h */,
-				F04C52BB2413F2E400F91A88 /* SSCalendarWeekHeaderView.m */,
-				F04C52BC2413F2E400F91A88 /* SSCalendarEventsTableViewController.h */,
-				F04C52BD2413F2E400F91A88 /* SSCalendarWeekViewController.h */,
 				F04C52BE2413F2E400F91A88 /* SSCalendarDayViewController.m */,
+				F04C52BC2413F2E400F91A88 /* SSCalendarEventsTableViewController.h */,
 				F04C52BF2413F2E400F91A88 /* SSCalendarEventsTableViewController.m */,
 				F04C52C02413F2E400F91A88 /* SSCalendarWeekHeaderView.h */,
+				F04C52BB2413F2E400F91A88 /* SSCalendarWeekHeaderView.m */,
+				F04C52BD2413F2E400F91A88 /* SSCalendarWeekViewController.h */,
+				F04C52B92413F2E400F91A88 /* SSCalendarWeekViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -408,20 +408,20 @@
 		F04C52C52413F2E400F91A88 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				F04C52C62413F2E400F91A88 /* SSDataController.h */,
-				F04C52C72413F2E400F91A88 /* StellarConversionUtils.m */,
 				F04C52C82413F2E400F91A88 /* SSCalendarUtils.h */,
-				F04C52C92413F2E400F91A88 /* SSStyles.m */,
-				F04C52CA2413F2E400F91A88 /* UIColor+StellarAdditions.m */,
-				F04C52CB2413F2E400F91A88 /* SSDimensions.m */,
-				F04C52CC2413F2E400F91A88 /* StellarConversionUtils.h */,
-				F04C52CD2413F2E400F91A88 /* SSConstants.h */,
-				F04C52CE2413F2E400F91A88 /* SSDataController.m */,
 				F04C52CF2413F2E400F91A88 /* SSCalendarUtils.m */,
-				F04C52D02413F2E400F91A88 /* UIColor+StellarAdditions.h */,
-				F04C52D12413F2E400F91A88 /* SSStyles.h */,
 				F04C52D22413F2E400F91A88 /* SSColors.h */,
+				F04C52CD2413F2E400F91A88 /* SSConstants.h */,
+				F04C52C62413F2E400F91A88 /* SSDataController.h */,
+				F04C52CE2413F2E400F91A88 /* SSDataController.m */,
 				F04C52D32413F2E400F91A88 /* SSDimensions.h */,
+				F04C52CB2413F2E400F91A88 /* SSDimensions.m */,
+				F04C52D12413F2E400F91A88 /* SSStyles.h */,
+				F04C52C92413F2E400F91A88 /* SSStyles.m */,
+				F04C52CC2413F2E400F91A88 /* StellarConversionUtils.h */,
+				F04C52C72413F2E400F91A88 /* StellarConversionUtils.m */,
+				F04C52D02413F2E400F91A88 /* UIColor+StellarAdditions.h */,
+				F04C52CA2413F2E400F91A88 /* UIColor+StellarAdditions.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -429,13 +429,13 @@
 		F07BC00823FCDD4800009D15 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
-				F07BC01823FD1B8300009D15 /* Model */,
-				F07BC01223FD104700009D15 /* View */,
 				F07BC00A23FCDD8F00009D15 /* DJDateListVC.h */,
 				F07BC00B23FCDD8F00009D15 /* DJDateListVC.m */,
 				F07BC00D23FD0F1F00009D15 /* DJTaskListOfDayVC.h */,
 				F07BC00E23FD0F1F00009D15 /* DJTaskListOfDayVC.m */,
 				F07BC00F23FD0F1F00009D15 /* DJTaskListOfDayVC.xib */,
+				F07BC01823FD1B8300009D15 /* Model */,
+				F07BC01223FD104700009D15 /* View */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -512,19 +512,19 @@
 		F0AF055D23FCD9FD0005F522 /* DJDailyTasks */ = {
 			isa = PBXGroup;
 			children = (
-				F07BC00923FCDD5800009D15 /* New Group1 */,
-				F07BC00823FCDD4800009D15 /* New Group */,
 				F0AF055E23FCD9FD0005F522 /* AppDelegate.h */,
 				F0AF055F23FCD9FD0005F522 /* AppDelegate.m */,
-				F0AF056123FCD9FD0005F522 /* SceneDelegate.h */,
-				F07BC02823FE23FB00009D15 /* PrefixHeader.pch */,
-				F0AF056223FCD9FD0005F522 /* SceneDelegate.m */,
-				F0AF056723FCD9FD0005F522 /* Main.storyboard */,
 				F0AF056D23FCD9FE0005F522 /* Assets.xcassets */,
-				F0AF056F23FCD9FE0005F522 /* LaunchScreen.storyboard */,
-				F0AF057223FCD9FE0005F522 /* Info.plist */,
-				F0AF057323FCD9FE0005F522 /* main.m */,
 				F0AF056A23FCD9FD0005F522 /* DJDailyTasks.xcdatamodeld */,
+				F0AF057223FCD9FE0005F522 /* Info.plist */,
+				F0AF056F23FCD9FE0005F522 /* LaunchScreen.storyboard */,
+				F0AF057323FCD9FE0005F522 /* main.m */,
+				F0AF056723FCD9FD0005F522 /* Main.storyboard */,
+				F07BC00823FCDD4800009D15 /* New Group */,
+				F07BC00923FCDD5800009D15 /* New Group1 */,
+				F07BC02823FE23FB00009D15 /* PrefixHeader.pch */,
+				F0AF056123FCD9FD0005F522 /* SceneDelegate.h */,
+				F0AF056223FCD9FD0005F522 /* SceneDelegate.m */,
 			);
 			path = DJDailyTasks;
 			sourceTree = "<group>";

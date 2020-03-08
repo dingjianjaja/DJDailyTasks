@@ -50,13 +50,14 @@
     if (_calendarYears == nil) {
         NSInteger year = [SSCalendarUtils currentYear];
         
-        SSYearNode *yearNode = [[SSYearNode alloc] initWithValue:year];
-        SSYearNode *yearNode1 = [[SSYearNode alloc] initWithValue:year + 1];
-        SSYearNode *yearNode2 = [[SSYearNode alloc] initWithValue:year + 2];
-        SSYearNode *yearNode3 = [[SSYearNode alloc] initWithValue:year + 3];
-        SSYearNode *yearNode4 = [[SSYearNode alloc] initWithValue:year + 4];
         
-        self.calendarYears = @[yearNode, yearNode1,  yearNode2, yearNode3, yearNode4];
+        NSMutableArray *years = [NSMutableArray array];
+        for (int i = 2018; i < year + 2; i++) {
+            SSYearNode *yearNode = [[SSYearNode alloc] initWithValue:i];
+            [years addObject:yearNode];
+        }
+        
+        self.calendarYears = years;
     }
     return _calendarYears;
 }
