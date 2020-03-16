@@ -26,6 +26,14 @@
                         <action selector="writeDataAction:" destination="-1" eventType="touchUpInside" id="sx4-rC-Xhf"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yo-ef-vtp">
+                    <rect key="frame" x="169" y="451" width="77" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="我是接收者"/>
+                    <connections>
+                        <action selector="receiveAction:" destination="-1" eventType="touchUpInside" id="UP4-Gb-j7G"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

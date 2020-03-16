@@ -12,7 +12,7 @@
 #import "DJBluetoothSetVC.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface DJBluetoothSetVC ()<CBPeripheralDelegate,CBCentralManagerDelegate>
+@interface DJBluetoothSetVC ()<CBPeripheralDelegate,CBCentralManagerDelegate,CBPeripheralManagerDelegate>
 
 @property (nonatomic, retain)CBMutableCharacteristic *transferCharacteristic;
 @property (nonatomic, retain)CBPeripheral *peripheral;
@@ -64,6 +64,25 @@
 
 #pragma mark -- actions
 
+- (IBAction)receiveAction:(UIButton *)sender {
+    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+    
+    // 生成Service以备添加到Peripheral当中:
+    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID] primary:YES];
+    
+    //生成characteristics以备添加到Service当中:
+    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]
+     properties:CBCharacteristicPropertyNotify|CBCharacteristicPropertyWrite
+          value:nil
+    permissions:CBAttributePermissionsReadable|CBAttributePermissionsWriteable];
+    
+    // 建立Peripheral，Server，characteristics三者之间的关系并开始广播服务:
+    //建立关系
+    transferService.characteristics = @[self.transferCharacteristic];
+    [self.peripheralManager addService:transferService];
+    //开始广播
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+}
 - (IBAction)writeDataAction:(UIButton *)sender {
     [self.peripheral writeValue:self.transData forCharacteristic:self.transferCharacteristic type:CBCharacteristicWriteWithResponse];
     //第一个参数是已连接的蓝牙设备； 第二个参数是要写入到哪个特征； 第三个参数是通过此响应记录是否成功写入 需要注意的是特征的属性是否支持写数据
@@ -253,5 +272,53 @@
     return _transferCharacteristic;
 }
 
+
+- (void)peripheralManagerDidUpdateState:(nonnull CBPeripheralManager *)peripheral {
+    
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    
+}
+
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+    
+}
+
+- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+    
+}
+
+- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
+    return CGSizeMake(100, 100);
+}
+
+- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+    
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+    
+}
+
+- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+    
+}
+
+- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator {
+    
+}
+
+- (void)setNeedsFocusUpdate {
+    
+}
+
+- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
+    return YES;
+}
+
+- (void)updateFocusIfNeeded {
+    
+}
 
 @end
