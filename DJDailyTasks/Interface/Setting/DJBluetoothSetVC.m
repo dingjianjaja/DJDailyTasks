@@ -12,7 +12,7 @@
 #import "DJBluetoothSetVC.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface DJBluetoothSetVC ()<CBPeripheralDelegate,CBCentralManagerDelegate,CBPeripheralManagerDelegate>
+@interface DJBluetoothSetVC ()<CBPeripheralDelegate,CBCentralManagerDelegate,CBPeripheralManagerDelegate,UITextViewDelegate>
 
 @property (nonatomic, retain)CBMutableCharacteristic *transferCharacteristic;
 @property (nonatomic, retain)CBPeripheral *peripheral;
@@ -21,6 +21,7 @@
 @property (nonatomic, retain)NSMutableArray *peripheraNames;
 
 @property (nonatomic, retain)NSData *transData;
+@property (weak, nonatomic) IBOutlet UITextView *msgTextV;
 
 @end
 
@@ -31,62 +32,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"蓝牙数据传输";
-    
-    [self setBlueToothClient];
 }
 
 #pragma mark -- privateMethod
-- (void)setBluetoothService{
-    // 创建Peripheral，也就是我们的Server:
-    
-    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-    // 生成Service以备添加到Peripheral当中:
-    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID] primary:YES];
-    // 生成characteristics以备添加到Service当中:
-    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID] properties:CBCharacteristicPropertyNotify|CBCharacteristicPropertyWrite value:nil permissions:CBAttributePermissionsReadable|CBAttributePermissionsWriteable];
 
-    // 建立Peripheral，Server，characteristics三者之间的关系并开始广播服务:
-    //建立关系
-    transferService.characteristics = @[self.transferCharacteristic];
-    [self.peripheralManager addService:transferService];
-    //开始广播
-    [self.peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
-}
-
-- (void)setBlueToothClient{
-    // 创建我们的Central，也就是client:
-    _central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    // 扫描可用的Peripheral:
-//    [self.central scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
-//    options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
-    
-}
 
 #pragma mark -- actions
-
+// 接收者
 - (IBAction)receiveAction:(UIButton *)sender {
     self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
     
-    // 生成Service以备添加到Peripheral当中:
-    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID] primary:YES];
     
-    //生成characteristics以备添加到Service当中:
-    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]
-     properties:CBCharacteristicPropertyNotify|CBCharacteristicPropertyWrite
-          value:nil
-    permissions:CBAttributePermissionsReadable|CBAttributePermissionsWriteable];
-    
-    // 建立Peripheral，Server，characteristics三者之间的关系并开始广播服务:
-    //建立关系
-    transferService.characteristics = @[self.transferCharacteristic];
-    [self.peripheralManager addService:transferService];
-    //开始广播
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
 }
-- (IBAction)writeDataAction:(UIButton *)sender {
-    [self.peripheral writeValue:self.transData forCharacteristic:self.transferCharacteristic type:CBCharacteristicWriteWithResponse];
-    //第一个参数是已连接的蓝牙设备； 第二个参数是要写入到哪个特征； 第三个参数是通过此响应记录是否成功写入 需要注意的是特征的属性是否支持写数据
 
+// 发送者
+- (IBAction)setSender:(UIButton *)sender {
+    
+    _central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+}
+
+- (IBAction)writeDataAction:(UIButton *)sender {
+//    [self.peripheral writeValue:self.transData forCharacteristic:self.transferCharacteristic type:CBCharacteristicWriteWithResponse];
+    //第一个参数是已连接的蓝牙设备； 第二个参数是要写入到哪个特征； 第三个参数是通过此响应记录是否成功写入 需要注意的是特征的属性是否支持写数据
+    
+    [self.peripheralManager updateValue:self.transData forCharacteristic:self.transferCharacteristic onSubscribedCentrals:@[]];
 }
 #pragma mark -- delegate
 
@@ -102,7 +71,7 @@
         //搜索扫描外设
         // 根据SERVICE_UUID来扫描外设，如果不设置SERVICE_UUID，则扫描所有蓝牙设备
         // [self.centralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey:@[[CBUUID UUIDWithString:SERVICE_UUID]]}];
-        [central scanForPeripheralsWithServices:nil options:nil];
+        [central scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
     }
 
     if(central.state == CBManagerStateUnsupported) {
@@ -122,48 +91,30 @@
 /** 发现符合要求的外设，回调 */
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI{
     NSLog(@"%@====",peripheral.name);
+    
+    // 链接外设
+    [self.central connectPeripheral:peripheral options:nil];
+    self.peripheral = peripheral;
 
 
-    if ([peripheral.name hasPrefix:@"dingjianjaja"]) {
-        //在这里对外设携带的广播数据进行进一步的处理
-        if ([self.peripheraNames containsObject:peripheral.name]) {
-            //如果数组中包含了就不再添加
-            return;
-        }
-        //添加到外设名字数组中
-        [self.peripheraNames addObject:peripheral.name];
-        //标记外设，让它的生命周期与控制器的一致
-        self.peripheral = peripheral;
-        // 可以根据外设名字来过滤外设
-
-         [central connectPeripheral:peripheral options:nil];
-
-    }
-
-    // 连接外设
-//     [central connectPeripheral:peripheral options:nil];
 
 }
 
 
 /** 连接成功 */
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
-    //连接成功之后，可以进行服务和特性的发现。 停止中心管理设备的扫描动作，要不然在你和已经连接好的外设进行数据沟通时，如果又有一个外设进行广播且符合你的连接条件，那么你的iOS设备也会去连接这个设备（因为iOS BLE4.0是支持一对多连接的），导致数据的混乱。
-
+    //连接成功之后，可以进行服务和特性的发现。
     //停止扫描动作
     [self.central stopScan];
 
     // 设置外设的代理
     peripheral.delegate = self;
 
-    // 根据UUID来寻找服务
-
-    // [peripheral discoverServices:@[[CBUUID UUIDWithString:SERVICE_UUID]]];
-
-    //外设发现服务，传nil代表不过滤，一次性读出外设的所有服务
-    [peripheral discoverServices:nil];
-
     NSLog(@"%s, line = %d, %@=连接成功", __FUNCTION__, __LINE__, peripheral.name);
+    
+    
+    // 连接成功之后查找可用的Service：
+    [peripheral discoverServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]];
 }
 
 
@@ -185,32 +136,22 @@
 
 #pragma mark peripheralDelegate
 /** 发现服务 */
-
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
-
-    // 遍历出外设中所有的服务
-
-    for (CBService *service in peripheral.services) {
-
-         NSLog(@"所有的服务：%@",service);
-        if ([service.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]) {
-            [peripheral discoverCharacteristics:nil forService:service];
-        }
-
+    // 遍历所有的服务
+    for (CBService *service in peripheral.services)
+    {
+        NSLog(@"服务:%@",service.UUID.UUIDString);
+        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]] forService:service];
     }
+    
+    
+    //找到Service之后，进一步查找可用的Characteristics并订阅:
+    //查找Characteristics
 
-    // 这里仅有一个服务，所以直接获取
+}
 
-//    CBService *service = peripheral.services.lastObject;
-
-    // 根据UUID寻找服务中的特征
-
-    // [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:CHARACTERISTIC_UUID]] forService:service];
-
-    // [peripheral discoverCharacteristics:@[service.UUID] forService:service];
-
-//    [peripheral discoverCharacteristics:nil forService:service];
-
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(NSError *)error{
+    
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
@@ -219,7 +160,8 @@
       {
         NSLog(@"characteristic:%@",characteristic);
           if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
-              
+              //订阅
+              [peripheral setNotifyValue:YES forCharacteristic:characteristic];
           }
       }
 }
@@ -248,6 +190,7 @@
     // 拿到外设发送过来的数据
      NSData *data = characteristic.value;
      NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    self.msgTextV.text = dataStr;
     NSLog(@"%@",dataStr);
 }
 
@@ -256,6 +199,20 @@
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
     NSLog(@"write value success(写入成功) : %@", characteristic);
 }
+
+#pragma mark -- textViewDelegate
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    
+    self.transData = [textView.text dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    }
+    return YES;
+}
+
 
 #pragma mark -- lazyloading
 - (NSMutableArray *)peripheraNames{
@@ -273,9 +230,31 @@
 }
 
 
+
+
+
 - (void)peripheralManagerDidUpdateState:(nonnull CBPeripheralManager *)peripheral {
-    
+    if (peripheral.state == CBManagerStatePoweredOn) {
+        NSLog(@"蓝牙状态开启");
+
+        // 生成Service以备添加到Peripheral当中:
+        CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID] primary:YES];
+        //生成characteristics以备添加到Service当中:
+        self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID] properties:CBCharacteristicPropertyNotify|CBCharacteristicPropertyWrite value:nil permissions:CBAttributePermissionsReadable|CBAttributePermissionsWriteable];
+        
+        // 建立Peripheral，Server，characteristics三者之间的关系并开始广播服务:
+        //建立关系
+        transferService.characteristics = @[self.transferCharacteristic];
+        [self.peripheralManager addService:transferService];
+        //开始广播
+        [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+    }
 }
+
+
+
+
+
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
     
