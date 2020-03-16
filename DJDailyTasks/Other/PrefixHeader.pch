@@ -11,6 +11,7 @@
 
 
 #import "NSDate+DJAdd.h"
+#import "NSString+DJAdd.h"
 
 
 #endif /* PrefixHeader_pch */

@@ -54,6 +54,11 @@
 		F07BC01723FD109200009D15 /* DJTaskListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07BC01523FD109200009D15 /* DJTaskListTableViewCell.xib */; };
 		F07BC01B23FD1BA100009D15 /* DJTaskListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F07BC01A23FD1BA100009D15 /* DJTaskListModel.m */; };
 		F07BC02723FE233D00009D15 /* NSDate+DJAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = F07BC02623FE233D00009D15 /* NSDate+DJAdd.m */; };
+		F07E1FBA241F1B80000EFE73 /* DJSettingHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E1FB8241F1B80000EFE73 /* DJSettingHomeVC.m */; };
+		F07E1FBB241F1B80000EFE73 /* DJSettingHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07E1FB9241F1B80000EFE73 /* DJSettingHomeVC.xib */; };
+		F07E1FBF241F2A13000EFE73 /* DJBluetoothSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E1FBD241F2A13000EFE73 /* DJBluetoothSetVC.m */; };
+		F07E1FC0241F2A13000EFE73 /* DJBluetoothSetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07E1FBE241F2A13000EFE73 /* DJBluetoothSetVC.xib */; };
+		F07E1FC3241F5498000EFE73 /* NSString+DJAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E1FC2241F5498000EFE73 /* NSString+DJAdd.m */; };
 		F0AF056023FCD9FD0005F522 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AF055F23FCD9FD0005F522 /* AppDelegate.m */; };
 		F0AF056323FCD9FD0005F522 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AF056223FCD9FD0005F522 /* SceneDelegate.m */; };
 		F0AF056923FCD9FD0005F522 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AF056723FCD9FD0005F522 /* Main.storyboard */; };
@@ -152,6 +157,14 @@
 		F07BC02523FE233D00009D15 /* NSDate+DJAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+DJAdd.h"; sourceTree = "<group>"; };
 		F07BC02623FE233D00009D15 /* NSDate+DJAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DJAdd.m"; sourceTree = "<group>"; };
 		F07BC02823FE23FB00009D15 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		F07E1FB7241F1B80000EFE73 /* DJSettingHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJSettingHomeVC.h; sourceTree = "<group>"; };
+		F07E1FB8241F1B80000EFE73 /* DJSettingHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJSettingHomeVC.m; sourceTree = "<group>"; };
+		F07E1FB9241F1B80000EFE73 /* DJSettingHomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJSettingHomeVC.xib; sourceTree = "<group>"; };
+		F07E1FBC241F2A13000EFE73 /* DJBluetoothSetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJBluetoothSetVC.h; sourceTree = "<group>"; };
+		F07E1FBD241F2A13000EFE73 /* DJBluetoothSetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJBluetoothSetVC.m; sourceTree = "<group>"; };
+		F07E1FBE241F2A13000EFE73 /* DJBluetoothSetVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJBluetoothSetVC.xib; sourceTree = "<group>"; };
+		F07E1FC1241F5498000EFE73 /* NSString+DJAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DJAdd.h"; sourceTree = "<group>"; };
+		F07E1FC2241F5498000EFE73 /* NSString+DJAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DJAdd.m"; sourceTree = "<group>"; };
 		F0AF055B23FCD9FD0005F522 /* DJDailyTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJDailyTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0AF055E23FCD9FD0005F522 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F0AF055F23FCD9FD0005F522 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -426,9 +439,10 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		F07BC00823FCDD4800009D15 /* New Group */ = {
+		F07BC00823FCDD4800009D15 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				F07E1FB6241F1B43000EFE73 /* Setting */,
 				F07BC00A23FCDD8F00009D15 /* DJDateListVC.h */,
 				F07BC00B23FCDD8F00009D15 /* DJDateListVC.m */,
 				F07BC00D23FD0F1F00009D15 /* DJTaskListOfDayVC.h */,
@@ -437,14 +451,7 @@
 				F07BC01823FD1B8300009D15 /* Model */,
 				F07BC01223FD104700009D15 /* View */,
 			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		F07BC00923FCDD5800009D15 /* New Group1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group1";
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		F07BC01223FD104700009D15 /* View */ = {
@@ -488,8 +495,35 @@
 			children = (
 				F07BC02523FE233D00009D15 /* NSDate+DJAdd.h */,
 				F07BC02623FE233D00009D15 /* NSDate+DJAdd.m */,
+				F07E1FC1241F5498000EFE73 /* NSString+DJAdd.h */,
+				F07E1FC2241F5498000EFE73 /* NSString+DJAdd.m */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		F07E1FB5241F1B0A000EFE73 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				F07BC02823FE23FB00009D15 /* PrefixHeader.pch */,
+				F0AF056123FCD9FD0005F522 /* SceneDelegate.h */,
+				F0AF056223FCD9FD0005F522 /* SceneDelegate.m */,
+				F0AF055E23FCD9FD0005F522 /* AppDelegate.h */,
+				F0AF055F23FCD9FD0005F522 /* AppDelegate.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		F07E1FB6241F1B43000EFE73 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				F07E1FB7241F1B80000EFE73 /* DJSettingHomeVC.h */,
+				F07E1FB8241F1B80000EFE73 /* DJSettingHomeVC.m */,
+				F07E1FB9241F1B80000EFE73 /* DJSettingHomeVC.xib */,
+				F07E1FBC241F2A13000EFE73 /* DJBluetoothSetVC.h */,
+				F07E1FBD241F2A13000EFE73 /* DJBluetoothSetVC.m */,
+				F07E1FBE241F2A13000EFE73 /* DJBluetoothSetVC.xib */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		F0AF055223FCD9FD0005F522 = {
@@ -512,19 +546,14 @@
 		F0AF055D23FCD9FD0005F522 /* DJDailyTasks */ = {
 			isa = PBXGroup;
 			children = (
-				F0AF055E23FCD9FD0005F522 /* AppDelegate.h */,
-				F0AF055F23FCD9FD0005F522 /* AppDelegate.m */,
-				F0AF056D23FCD9FE0005F522 /* Assets.xcassets */,
+				F0AF056723FCD9FD0005F522 /* Main.storyboard */,
+				F0AF056F23FCD9FE0005F522 /* LaunchScreen.storyboard */,
 				F0AF056A23FCD9FD0005F522 /* DJDailyTasks.xcdatamodeld */,
 				F0AF057223FCD9FE0005F522 /* Info.plist */,
-				F0AF056F23FCD9FE0005F522 /* LaunchScreen.storyboard */,
+				F0AF056D23FCD9FE0005F522 /* Assets.xcassets */,
 				F0AF057323FCD9FE0005F522 /* main.m */,
-				F0AF056723FCD9FD0005F522 /* Main.storyboard */,
-				F07BC00823FCDD4800009D15 /* New Group */,
-				F07BC00923FCDD5800009D15 /* New Group1 */,
-				F07BC02823FE23FB00009D15 /* PrefixHeader.pch */,
-				F0AF056123FCD9FD0005F522 /* SceneDelegate.h */,
-				F0AF056223FCD9FD0005F522 /* SceneDelegate.m */,
+				F07E1FB5241F1B0A000EFE73 /* Other */,
+				F07BC00823FCDD4800009D15 /* Interface */,
 			);
 			path = DJDailyTasks;
 			sourceTree = "<group>";
@@ -588,10 +617,12 @@
 			files = (
 				F04C52E12413F2E400F91A88 /* SSCalendarAnnualCell.xib in Resources */,
 				F04C52E92413F2E400F91A88 /* SSCalendarEventsCell.xib in Resources */,
+				F07E1FBB241F1B80000EFE73 /* DJSettingHomeVC.xib in Resources */,
 				F04C52DB2413F2E400F91A88 /* SSCalendarMonthlyViewController.xib in Resources */,
 				F0AF057123FCD9FE0005F522 /* LaunchScreen.storyboard in Resources */,
 				F04C52E02413F2E400F91A88 /* SSCalendarMonthlyHeaderView.xib in Resources */,
 				F04C52E42413F2E400F91A88 /* SSCalendarAnnualViewController.xib in Resources */,
+				F07E1FC0241F2A13000EFE73 /* DJBluetoothSetVC.xib in Resources */,
 				F07BC01723FD109200009D15 /* DJTaskListTableViewCell.xib in Resources */,
 				F0AF056E23FCD9FE0005F522 /* Assets.xcassets in Resources */,
 				F04C52EC2413F2E400F91A88 /* SSCalendarDailyViewController.xib in Resources */,
@@ -610,6 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F04C52DA2413F2E400F91A88 /* SSCalendarCache.m in Sources */,
+				F07E1FC3241F5498000EFE73 /* NSString+DJAdd.m in Sources */,
 				F04C52E62413F2E400F91A88 /* SSCalendarAnnualDataSource.m in Sources */,
 				F04C52DD2413F2E400F91A88 /* SSCalendarMonthlyLayout.m in Sources */,
 				F04C52F92413F2E400F91A88 /* SSDimensions.m in Sources */,
@@ -629,6 +661,7 @@
 				F07BC01B23FD1BA100009D15 /* DJTaskListModel.m in Sources */,
 				F04C52EF2413F2E400F91A88 /* SSCalendarDayLayout.m in Sources */,
 				F04C52EE2413F2E400F91A88 /* SSCalendarWeekLayout.m in Sources */,
+				F07E1FBF241F2A13000EFE73 /* DJBluetoothSetVC.m in Sources */,
 				F07BC00C23FCDD8F00009D15 /* DJDateListVC.m in Sources */,
 				F04C52D92413F2E400F91A88 /* SSYearNode.m in Sources */,
 				F0AF056023FCD9FD0005F522 /* AppDelegate.m in Sources */,
@@ -649,6 +682,7 @@
 				F04C52D82413F2E400F91A88 /* SSCalendarCountCache.m in Sources */,
 				F04C52F62413F2E400F91A88 /* StellarConversionUtils.m in Sources */,
 				F04C52EA2413F2E400F91A88 /* SSCalendarEventsCell.m in Sources */,
+				F07E1FBA241F1B80000EFE73 /* DJSettingHomeVC.m in Sources */,
 				F07BC01023FD0F1F00009D15 /* DJTaskListOfDayVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -798,7 +832,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6YB452KDQY;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
-				GCC_PREFIX_HEADER = DJDailyTasks/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = DJDailyTasks/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = DJDailyTasks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -818,7 +852,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6YB452KDQY;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
-				GCC_PREFIX_HEADER = DJDailyTasks/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = DJDailyTasks/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = DJDailyTasks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

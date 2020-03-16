@@ -10,6 +10,7 @@
 #import "DJCalendarHeader.h"
 
 #import "DateListModel+CoreDataClass.h"
+#import "DJSettingHomeVC.h"
 
 @interface AppDelegate ()
 
@@ -24,10 +25,18 @@
           
     } else {
         SSCalendarAnnualViewController *vc = [[SSCalendarAnnualViewController alloc]initWithEvents:[self generateEvents]];
-
-        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
-        [self.window setRootViewController:navVC];
+        DJSettingHomeVC *setVC = [[DJSettingHomeVC alloc] init];
+        UINavigationController *setNavVC = [[UINavigationController alloc] initWithRootViewController:setVC];
+        
+        navVC.tabBarItem.title = @"日历";
+        setVC.tabBarItem.title = @"设置";
+        
+        UITabBarController *tabBarC = [[UITabBarController alloc] init];
+        tabBarC.viewControllers = @[navVC,setNavVC];
+        
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [self.window setRootViewController:tabBarC];
         [self.window makeKeyWindow];
     }
     

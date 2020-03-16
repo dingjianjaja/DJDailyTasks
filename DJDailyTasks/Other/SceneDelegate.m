@@ -5,6 +5,8 @@
 #import "DateListModel+CoreDataClass.h"
 #import "NSDate+DJAdd.h"
 
+#import "DJSettingHomeVC.h"
+
 @interface SceneDelegate ()
 
 @end
@@ -16,11 +18,20 @@
     if (scene) {
         SSCalendarAnnualViewController *vc = [[SSCalendarAnnualViewController alloc]initWithEvents:[self generateEvents]];
         UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:vc];
+        DJSettingHomeVC *setVC = [[DJSettingHomeVC alloc] init];
+        UINavigationController *setNavVC = [[UINavigationController alloc] initWithRootViewController:setVC];
+        
+        navVC.tabBarItem.title = @"日历";
+        setVC.tabBarItem.title = @"设置";
 
+        UITabBarController *tabBarC = [[UITabBarController alloc] init];
+        tabBarC.viewControllers = @[navVC,setNavVC];
+        
+        
         UIWindowScene *windowScene = (UIWindowScene *)scene;
         self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
         self.window.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-        [self.window setRootViewController:navVC];
+        [self.window setRootViewController:tabBarC];
         [self.window makeKeyWindow];
     }
 }
