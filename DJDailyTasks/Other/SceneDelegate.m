@@ -3,6 +3,9 @@
 #import "DJCalendarHeader.h"
 
 #import "DateListModel+CoreDataClass.h"
+#import "TaskListModel+CoreDataClass.h"
+#import "DJTaskListModelManager.h"
+#import "DJDateListModelManager.h"
 #import "NSDate+DJAdd.h"
 
 #import "DJSettingHomeVC.h"
@@ -40,18 +43,11 @@
     NSMutableArray *events = [NSMutableArray array];
     
     // 查出已经有记录的日期
+    NSArray *arr = [[DJDateListModelManager share] queryWithKeyValues:@{}];
+    
     // 查询是否已创建数据
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
-    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DateListModel"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    
-    for (DateListModel *dateModel in fetchedObjects) {
+    for (DateListModel *dateModel in arr) {
         NSDate *date = [NSDate dateWithString:dateModel.dateStr format:@"yyyy-MM-dd"];
         SSEvent *event = [[SSEvent alloc] init];
         event.startDate = date;
@@ -71,8 +67,8 @@
 
 
 - (void)sceneDidBecomeActive:(UIScene *)scene  API_AVAILABLE(ios(13.0)){
-    // Called when the scene has moved from an inactive state to an active state.
-    // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+    NSLog(@"sceneDidBecomeActive");
+    
 }
 
 

@@ -10,6 +10,7 @@
 #import "DJTaskListTableViewCell.h"
 #import "AppDelegate.h"
 #import "TaskListModel+CoreDataProperties.h"
+#import "DJTaskListModelManager.h"
 
 @interface DJTaskListOfDayVC ()<UITableViewDelegate,UITableViewDataSource,TaskListCellDelegate>
 
@@ -74,17 +75,7 @@
 
 #pragma mark -- privateMethod
 - (void)getData{
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    
-    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskListModel"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(dateStr LIKE %@)",self.currentDateStr];
-    [fetchRequest setPredicate:predicate];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSArray *fetchedObjects = [[DJTaskListModelManager share] queryWithKeyValues:@{@"dateStr":self.currentDateStr}];
     self.dataArr = [NSMutableArray arrayWithArray:fetchedObjects];
     [self.tableView reloadData];
 }

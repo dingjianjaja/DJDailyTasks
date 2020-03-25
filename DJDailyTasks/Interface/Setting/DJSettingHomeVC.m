@@ -8,6 +8,7 @@
 
 #import "DJSettingHomeVC.h"
 #import "DJBluetoothSetVC.h"
+#import "DJAirdropVC.h"
 
 @interface DJSettingHomeVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -37,7 +38,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -46,17 +47,38 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseID];
     }
-    cell.textLabel.text = @"蓝牙数据传输";
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    switch (indexPath.row) {
+        case 0:{
+            cell.textLabel.text = @"蓝牙数据传输";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+            break;
+        case 1:{
+            cell.textLabel.text = @"airdrop";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+            
+        default:
+            break;
+    }
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([cell.textLabel.text isEqualToString:@"蓝牙数据传输"]) {
-        DJBluetoothSetVC *vc = [[DJBluetoothSetVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+    switch (indexPath.row) {
+        case 0:{
+            DJBluetoothSetVC *vc = [[DJBluetoothSetVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1:{
+            DJAirdropVC *vc = [[DJAirdropVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        default:
+            break;
     }
 }
 

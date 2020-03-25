@@ -10,6 +10,7 @@
 #import "DJCalendarHeader.h"
 
 #import "DateListModel+CoreDataClass.h"
+#import "DJDateListModelManager.h"
 #import "DJSettingHomeVC.h"
 
 @interface AppDelegate ()
@@ -49,17 +50,8 @@
     
     // 查出已经有记录的日期
     // 查询是否已创建数据
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    
-    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DateListModel"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    
-    for (DateListModel *dateModel in fetchedObjects) {
+    NSArray *arr = [[DJDateListModelManager share] queryWithKeyValues:@{}];
+    for (DateListModel *dateModel in arr) {
         NSDate *date = [NSDate dateWithString:dateModel.dateStr format:@"yyyy-MM-dd"];
         SSEvent *event = [[SSEvent alloc] init];
         event.startDate = date;

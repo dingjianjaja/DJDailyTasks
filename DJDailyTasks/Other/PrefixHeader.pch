@@ -12,6 +12,7 @@
 
 #import "NSDate+DJAdd.h"
 #import "NSString+DJAdd.h"
+#import "MJExtension.h"
 
 
 #endif /* PrefixHeader_pch */

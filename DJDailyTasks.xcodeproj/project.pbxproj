@@ -47,6 +47,21 @@
 		F04C52F92413F2E400F91A88 /* SSDimensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C52CB2413F2E400F91A88 /* SSDimensions.m */; };
 		F04C52FA2413F2E400F91A88 /* SSDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C52CE2413F2E400F91A88 /* SSDataController.m */; };
 		F04C52FB2413F2E400F91A88 /* SSCalendarUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C52CF2413F2E400F91A88 /* SSCalendarUtils.m */; };
+		F061DA3D24299F8C00081797 /* DJAirdropVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA3B24299F8B00081797 /* DJAirdropVC.m */; };
+		F061DA3E24299F8C00081797 /* DJAirdropVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F061DA3C24299F8B00081797 /* DJAirdropVC.xib */; };
+		F061DA572429A08F00081797 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA442429A08F00081797 /* MJPropertyType.m */; };
+		F061DA582429A08F00081797 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA472429A08F00081797 /* NSObject+MJKeyValue.m */; };
+		F061DA592429A08F00081797 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA482429A08F00081797 /* MJProperty.m */; };
+		F061DA5A2429A08F00081797 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA4A2429A08F00081797 /* NSObject+MJCoding.m */; };
+		F061DA5B2429A08F00081797 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA4C2429A08F00081797 /* MJExtensionConst.m */; };
+		F061DA5C2429A08F00081797 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA4D2429A08F00081797 /* NSObject+MJProperty.m */; };
+		F061DA5D2429A08F00081797 /* NSObject+MJClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA4F2429A08F00081797 /* NSObject+MJClass.m */; };
+		F061DA5E2429A08F00081797 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA502429A08F00081797 /* NSString+MJExtension.m */; };
+		F061DA5F2429A08F00081797 /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA512429A08F00081797 /* MJPropertyKey.m */; };
+		F061DA602429A08F00081797 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA552429A08F00081797 /* MJFoundation.m */; };
+		F061DA612429A08F00081797 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F061DA562429A08F00081797 /* LICENSE */; };
+		F061DA652429A1F800081797 /* DJDateListModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA642429A1F800081797 /* DJDateListModelManager.m */; };
+		F061DA682429A20A00081797 /* DJTaskListModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F061DA672429A20A00081797 /* DJTaskListModelManager.m */; };
 		F07BC00C23FCDD8F00009D15 /* DJDateListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F07BC00B23FCDD8F00009D15 /* DJDateListVC.m */; };
 		F07BC01023FD0F1F00009D15 /* DJTaskListOfDayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F07BC00E23FD0F1F00009D15 /* DJTaskListOfDayVC.m */; };
 		F07BC01123FD0F1F00009D15 /* DJTaskListOfDayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07BC00F23FD0F1F00009D15 /* DJTaskListOfDayVC.xib */; };
@@ -144,6 +159,35 @@
 		F04C52D22413F2E400F91A88 /* SSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSColors.h; sourceTree = "<group>"; };
 		F04C52D32413F2E400F91A88 /* SSDimensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDimensions.h; sourceTree = "<group>"; };
 		F04C52FC2413F35B00F91A88 /* DJCalendarHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJCalendarHeader.h; sourceTree = "<group>"; };
+		F061DA3A24299F8B00081797 /* DJAirdropVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJAirdropVC.h; sourceTree = "<group>"; };
+		F061DA3B24299F8B00081797 /* DJAirdropVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJAirdropVC.m; sourceTree = "<group>"; };
+		F061DA3C24299F8B00081797 /* DJAirdropVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJAirdropVC.xib; sourceTree = "<group>"; };
+		F061DA412429A08F00081797 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
+		F061DA422429A08F00081797 /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
+		F061DA432429A08F00081797 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
+		F061DA442429A08F00081797 /* MJPropertyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyType.m; sourceTree = "<group>"; };
+		F061DA452429A08F00081797 /* NSObject+MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJProperty.h"; sourceTree = "<group>"; };
+		F061DA462429A08F00081797 /* MJExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtensionConst.h; sourceTree = "<group>"; };
+		F061DA472429A08F00081797 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		F061DA482429A08F00081797 /* MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJProperty.m; sourceTree = "<group>"; };
+		F061DA492429A08F00081797 /* MJFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFoundation.h; sourceTree = "<group>"; };
+		F061DA4A2429A08F00081797 /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
+		F061DA4B2429A08F00081797 /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
+		F061DA4C2429A08F00081797 /* MJExtensionConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJExtensionConst.m; sourceTree = "<group>"; };
+		F061DA4D2429A08F00081797 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
+		F061DA4E2429A08F00081797 /* MJPropertyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyType.h; sourceTree = "<group>"; };
+		F061DA4F2429A08F00081797 /* NSObject+MJClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJClass.m"; sourceTree = "<group>"; };
+		F061DA502429A08F00081797 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		F061DA512429A08F00081797 /* MJPropertyKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyKey.m; sourceTree = "<group>"; };
+		F061DA522429A08F00081797 /* MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJProperty.h; sourceTree = "<group>"; };
+		F061DA532429A08F00081797 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
+		F061DA542429A08F00081797 /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
+		F061DA552429A08F00081797 /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
+		F061DA562429A08F00081797 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F061DA632429A1F800081797 /* DJDateListModelManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDateListModelManager.h; sourceTree = "<group>"; };
+		F061DA642429A1F800081797 /* DJDateListModelManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDateListModelManager.m; sourceTree = "<group>"; };
+		F061DA662429A20A00081797 /* DJTaskListModelManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTaskListModelManager.h; sourceTree = "<group>"; };
+		F061DA672429A20A00081797 /* DJTaskListModelManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTaskListModelManager.m; sourceTree = "<group>"; };
 		F07BC00A23FCDD8F00009D15 /* DJDateListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJDateListVC.h; sourceTree = "<group>"; };
 		F07BC00B23FCDD8F00009D15 /* DJDateListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJDateListVC.m; sourceTree = "<group>"; };
 		F07BC00D23FD0F1F00009D15 /* DJTaskListOfDayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTaskListOfDayVC.h; sourceTree = "<group>"; };
@@ -439,9 +483,58 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		F061DA3F2429A08F00081797 /* MJExtension */ = {
+			isa = PBXGroup;
+			children = (
+				F061DA402429A08F00081797 /* MJExtension */,
+				F061DA562429A08F00081797 /* LICENSE */,
+			);
+			path = MJExtension;
+			sourceTree = "<group>";
+		};
+		F061DA402429A08F00081797 /* MJExtension */ = {
+			isa = PBXGroup;
+			children = (
+				F061DA412429A08F00081797 /* MJPropertyKey.h */,
+				F061DA422429A08F00081797 /* NSObject+MJClass.h */,
+				F061DA432429A08F00081797 /* NSString+MJExtension.h */,
+				F061DA442429A08F00081797 /* MJPropertyType.m */,
+				F061DA452429A08F00081797 /* NSObject+MJProperty.h */,
+				F061DA462429A08F00081797 /* MJExtensionConst.h */,
+				F061DA472429A08F00081797 /* NSObject+MJKeyValue.m */,
+				F061DA482429A08F00081797 /* MJProperty.m */,
+				F061DA492429A08F00081797 /* MJFoundation.h */,
+				F061DA4A2429A08F00081797 /* NSObject+MJCoding.m */,
+				F061DA4B2429A08F00081797 /* MJExtension.h */,
+				F061DA4C2429A08F00081797 /* MJExtensionConst.m */,
+				F061DA4D2429A08F00081797 /* NSObject+MJProperty.m */,
+				F061DA4E2429A08F00081797 /* MJPropertyType.h */,
+				F061DA4F2429A08F00081797 /* NSObject+MJClass.m */,
+				F061DA502429A08F00081797 /* NSString+MJExtension.m */,
+				F061DA512429A08F00081797 /* MJPropertyKey.m */,
+				F061DA522429A08F00081797 /* MJProperty.h */,
+				F061DA532429A08F00081797 /* NSObject+MJKeyValue.h */,
+				F061DA542429A08F00081797 /* NSObject+MJCoding.h */,
+				F061DA552429A08F00081797 /* MJFoundation.m */,
+			);
+			path = MJExtension;
+			sourceTree = "<group>";
+		};
+		F061DA622429A13700081797 /* Utilits */ = {
+			isa = PBXGroup;
+			children = (
+				F061DA632429A1F800081797 /* DJDateListModelManager.h */,
+				F061DA642429A1F800081797 /* DJDateListModelManager.m */,
+				F061DA662429A20A00081797 /* DJTaskListModelManager.h */,
+				F061DA672429A20A00081797 /* DJTaskListModelManager.m */,
+			);
+			path = Utilits;
+			sourceTree = "<group>";
+		};
 		F07BC00823FCDD4800009D15 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				F061DA622429A13700081797 /* Utilits */,
 				F07E1FB6241F1B43000EFE73 /* Setting */,
 				F07BC00A23FCDD8F00009D15 /* DJDateListVC.h */,
 				F07BC00B23FCDD8F00009D15 /* DJDateListVC.m */,
@@ -476,6 +569,7 @@
 		F07BC02223FE230000009D15 /* DJKit */ = {
 			isa = PBXGroup;
 			children = (
+				F061DA3F2429A08F00081797 /* MJExtension */,
 				F04C52732413F2A900F91A88 /* DJCalendar */,
 				F07BC02323FE231400009D15 /* Base */,
 			);
@@ -522,6 +616,9 @@
 				F07E1FBC241F2A13000EFE73 /* DJBluetoothSetVC.h */,
 				F07E1FBD241F2A13000EFE73 /* DJBluetoothSetVC.m */,
 				F07E1FBE241F2A13000EFE73 /* DJBluetoothSetVC.xib */,
+				F061DA3A24299F8B00081797 /* DJAirdropVC.h */,
+				F061DA3B24299F8B00081797 /* DJAirdropVC.m */,
+				F061DA3C24299F8B00081797 /* DJAirdropVC.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -623,6 +720,8 @@
 				F04C52E02413F2E400F91A88 /* SSCalendarMonthlyHeaderView.xib in Resources */,
 				F04C52E42413F2E400F91A88 /* SSCalendarAnnualViewController.xib in Resources */,
 				F07E1FC0241F2A13000EFE73 /* DJBluetoothSetVC.xib in Resources */,
+				F061DA612429A08F00081797 /* LICENSE in Resources */,
+				F061DA3E24299F8C00081797 /* DJAirdropVC.xib in Resources */,
 				F07BC01723FD109200009D15 /* DJTaskListTableViewCell.xib in Resources */,
 				F0AF056E23FCD9FE0005F522 /* Assets.xcassets in Resources */,
 				F04C52EC2413F2E400F91A88 /* SSCalendarDailyViewController.xib in Resources */,
@@ -641,6 +740,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F04C52DA2413F2E400F91A88 /* SSCalendarCache.m in Sources */,
+				F061DA5D2429A08F00081797 /* NSObject+MJClass.m in Sources */,
 				F07E1FC3241F5498000EFE73 /* NSString+DJAdd.m in Sources */,
 				F04C52E62413F2E400F91A88 /* SSCalendarAnnualDataSource.m in Sources */,
 				F04C52DD2413F2E400F91A88 /* SSCalendarMonthlyLayout.m in Sources */,
@@ -648,32 +748,42 @@
 				F04C52E32413F2E400F91A88 /* SSCalendarAnnualViewController.m in Sources */,
 				F04C52ED2413F2E400F91A88 /* SSCalendarDailyViewController.m in Sources */,
 				F04C52F12413F2E400F91A88 /* SSCalendarWeekHeaderView.m in Sources */,
+				F061DA682429A20A00081797 /* DJTaskListModelManager.m in Sources */,
 				F04C52D62413F2E400F91A88 /* SSEvent.m in Sources */,
 				F04C52E22413F2E400F91A88 /* SSCalendarAnnualCell.m in Sources */,
 				F04C52F42413F2E400F91A88 /* SSCalendarDayCell.m in Sources */,
 				F04C52F82413F2E400F91A88 /* UIColor+StellarAdditions.m in Sources */,
 				F07BC02723FE233D00009D15 /* NSDate+DJAdd.m in Sources */,
+				F061DA5C2429A08F00081797 /* NSObject+MJProperty.m in Sources */,
 				F04C52E52413F2E400F91A88 /* SSCalendarAnnualLayout.m in Sources */,
 				F0AF057423FCD9FE0005F522 /* main.m in Sources */,
 				F04C52D52413F2E400F91A88 /* SSMonthNode.m in Sources */,
 				F0AF056C23FCD9FD0005F522 /* DJDailyTasks.xcdatamodeld in Sources */,
 				F04C52E72413F2E400F91A88 /* SSCalendarAnnualHeaderView.m in Sources */,
 				F07BC01B23FD1BA100009D15 /* DJTaskListModel.m in Sources */,
+				F061DA592429A08F00081797 /* MJProperty.m in Sources */,
 				F04C52EF2413F2E400F91A88 /* SSCalendarDayLayout.m in Sources */,
+				F061DA602429A08F00081797 /* MJFoundation.m in Sources */,
 				F04C52EE2413F2E400F91A88 /* SSCalendarWeekLayout.m in Sources */,
+				F061DA572429A08F00081797 /* MJPropertyType.m in Sources */,
 				F07E1FBF241F2A13000EFE73 /* DJBluetoothSetVC.m in Sources */,
 				F07BC00C23FCDD8F00009D15 /* DJDateListVC.m in Sources */,
 				F04C52D92413F2E400F91A88 /* SSYearNode.m in Sources */,
 				F0AF056023FCD9FD0005F522 /* AppDelegate.m in Sources */,
 				F0AF056323FCD9FD0005F522 /* SceneDelegate.m in Sources */,
+				F061DA5A2429A08F00081797 /* NSObject+MJCoding.m in Sources */,
+				F061DA5F2429A08F00081797 /* MJPropertyKey.m in Sources */,
+				F061DA5E2429A08F00081797 /* NSString+MJExtension.m in Sources */,
 				F07BC01623FD109200009D15 /* DJTaskListTableViewCell.m in Sources */,
 				F04C52F32413F2E400F91A88 /* SSCalendarEventsTableViewController.m in Sources */,
 				F04C52DC2413F2E400F91A88 /* SSCalendarMonthlyViewController.m in Sources */,
 				F04C52F72413F2E400F91A88 /* SSStyles.m in Sources */,
 				F04C52EB2413F2E400F91A88 /* SSCalendarEventTableViewCell.m in Sources */,
+				F061DA652429A1F800081797 /* DJDateListModelManager.m in Sources */,
 				F04C52FB2413F2E400F91A88 /* SSCalendarUtils.m in Sources */,
 				F04C52F02413F2E400F91A88 /* SSCalendarWeekViewController.m in Sources */,
 				F04C52D42413F2E400F91A88 /* SSCache.m in Sources */,
+				F061DA3D24299F8C00081797 /* DJAirdropVC.m in Sources */,
 				F04C52DF2413F2E400F91A88 /* SSCalendarMonthlyHeaderView.m in Sources */,
 				F04C52D72413F2E400F91A88 /* SSDayNode.m in Sources */,
 				F04C52FA2413F2E400F91A88 /* SSDataController.m in Sources */,
@@ -682,8 +792,10 @@
 				F04C52D82413F2E400F91A88 /* SSCalendarCountCache.m in Sources */,
 				F04C52F62413F2E400F91A88 /* StellarConversionUtils.m in Sources */,
 				F04C52EA2413F2E400F91A88 /* SSCalendarEventsCell.m in Sources */,
+				F061DA5B2429A08F00081797 /* MJExtensionConst.m in Sources */,
 				F07E1FBA241F1B80000EFE73 /* DJSettingHomeVC.m in Sources */,
 				F07BC01023FD0F1F00009D15 /* DJTaskListOfDayVC.m in Sources */,
+				F061DA582429A08F00081797 /* NSObject+MJKeyValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "DJTaskListOfDayVC.h"
 
 #import "AppDelegate.h"
+#import "DJDateListModelManager.h"
 #import "DateListModel+CoreDataProperties.h"
 
 @interface DJDateListVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -69,21 +70,10 @@
     }
     
     // 查询是否已创建数据
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    
-    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DateListModel"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(dateStr LIKE %@)",dateStr];
-    [fetchRequest setPredicate:predicate];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    
+    NSArray *dateModelArr = [[DJDateListModelManager share] queryWithKeyValues:@{@"dateStr":dateStr}];
     DateListModel *DateModel;
-    if (fetchedObjects.count > 0) {
-        DateModel = fetchedObjects.firstObject;
+    if (dateModelArr.count > 0) {
+        DateModel = dateModelArr.firstObject;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@----%.f%%",cell.detailTextLabel.text,DateModel.completionLevel*100];
     }
     
@@ -96,25 +86,15 @@
     DJTaskListOfDayVC *vc = [[DJTaskListOfDayVC alloc] init];
     vc.currentDateStr = self.dataArr[indexPath.row];
     // 点击当天的时候如果没有当天的数据，创建
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    
-    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DateListModel"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(dateStr LIKE %@)",self.dataArr[indexPath.row]];
-    [fetchRequest setPredicate:predicate];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSArray *fetchedObjects = [[DJDateListModelManager share] queryWithKeyValues:@{@"dateStr":self.dataArr[indexPath.row]}];
     
     DateListModel *dateModel;
     if (fetchedObjects.count == 0) {
         // 创建
-        dateModel = [NSEntityDescription insertNewObjectForEntityForName:@"DateListModel" inManagedObjectContext:appDelegate.persistentContainer.viewContext];
+        dateModel = [NSEntityDescription insertNewObjectForEntityForName:@"DateListModel" inManagedObjectContext:[DJDateListModelManager share].context];
         dateModel.dateStr = self.dataArr[indexPath.row];
         dateModel.completionLevel = 0.0;
-        [appDelegate saveContext];
+        [[DJDateListModelManager share] saveContext];
     }else{
         dateModel = fetchedObjects.firstObject;
     }
