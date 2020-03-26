@@ -43,8 +43,7 @@
     
     // 将string转txt文件存入本地
     // 设置路径 /Documents/local
-    NSString * airDropPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/local"];
-    NSString *localDataPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"local"];
+    NSString * localDataPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/local"];
     
     // 创建路径
     NSFileManager *manager = [NSFileManager defaultManager];
@@ -60,15 +59,14 @@
     // 写入文件
     NSError *error = [[NSError alloc] init];
     BOOL isTaskListOk = [taskListStr writeToFile:taskListPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    BOOL isDateListOk =  [dateListStr writeToFile:dateListPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    BOOL isDateListOk = [dateListStr writeToFile:dateListPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     
 }
 - (IBAction)translateDataAction:(UIButton *)sender {
-    NSString *localDataPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"local"];
     // taskList 文件路径
-    NSString *taskListPath = [localDataPath stringByAppendingPathComponent:@"taskList.txt"];
+    NSString *taskListPath = [KLOCAL_FILE_PATH stringByAppendingPathComponent:@"taskList.txt"];
     // dateList 文件路径
-    NSString *dateListPath = [localDataPath stringByAppendingPathComponent:@"dateList.txt"];
+    NSString *dateListPath = [KLOCAL_FILE_PATH stringByAppendingPathComponent:@"dateList.txt"];
     // 分享文件 file://开头
     NSString *taskListContent = [NSString stringWithFormat:@"file://%@",taskListPath];
     NSString *dateListContent = [NSString stringWithFormat:@"file://%@",dateListPath];
@@ -82,16 +80,11 @@
 }
 
 - (IBAction)searchDataFromAirdropAction:(UIButton *)sender {
-    
-    // 默认放在Document/Inbox ，所以可以这么获取文件
-    //获取存放所有AirDrop文件的文件名字
-    NSString * airDropPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/Inbox"];
-    //获取路径下的所有文件的名字
-    NSArray * files =  [[NSFileManager defaultManager] subpathsAtPath:airDropPath];
+    NSArray * files =  [[NSFileManager defaultManager] subpathsAtPath:KAIRDROP_RECIVED_FILE_PATH];
     NSMutableString *logStr = [NSMutableString stringWithString:@"通过airdrop获取的数据："];
     for (NSString *path in files) {
         [logStr appendFormat:@"\n%@",path];
-        NSString *content = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",airDropPath,path] encoding:NSUTF8StringEncoding error:NULL];
+        NSString *content = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/%@",KAIRDROP_RECIVED_FILE_PATH,path] encoding:NSUTF8StringEncoding error:NULL];
         NSLog(@"%@",content);
         if ([path containsString:@"taskList"]) {
             // 合并数据
@@ -102,9 +95,7 @@
         }else if([path containsString:@"dateList"]){
             NSData *jsonData = [content dataUsingEncoding:NSUTF8StringEncoding];
             NSError *err;
-            NSArray *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                                options:NSJSONReadingMutableContainers
-                                                                  error:&err];
+            NSArray *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
             [[DJDateListModelManager share] mergeOrAdd:dic];
         }
     }

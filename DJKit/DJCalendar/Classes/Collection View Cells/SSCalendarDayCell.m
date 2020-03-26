@@ -154,29 +154,36 @@
 
 #pragma mark - Layout Methods
 
-- (void)drawRect:(CGRect)rect
-{
-    if (_state != SSCalendarDayCellStateNone)
-    {
-        CGRect circleRect = CGRectMake(0, 0, 31.0f, 31.0f);
+- (void)drawRect:(CGRect)rect {
+    if (_state == SSCalendarDayCellStateEvent) {
+        CGRect circleRect = CGRectMake(0, 0, 40.0f, 40.0f);
         circleRect.origin.x = (rect.size.width - circleRect.size.width) / 2;
         circleRect.origin.y = (rect.size.height - circleRect.size.height) / 2;
 
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSaveGState(context);
         CGContextAddEllipseInRect(context, circleRect);
+        CGContextSetStrokeColorWithColor(context, [UIColor colorWithHexString:COLOR_BGVIEW_CYCLE].CGColor);
+        CGContextDrawPath(context, kCGPathStroke);
         
-        if (_state == SSCalendarDayCellStateEvent)
-        {
+        // 绘制百分比
+        if (self.dateListModel != nil) {
             CGContextSetStrokeColorWithColor(context, [UIColor colorWithHexString:COLOR_SECONDARY].CGColor);
+            CGContextAddArc(context, rect.size.width / 2, rect.size.height/2, 20, -M_PI_2, self.dateListModel.completionLevel * 2 * M_PI - M_PI_2, 0);
             CGContextDrawPath(context, kCGPathStroke);
         }
-        else if (_state == SSCalendarDayCellStateToday)
-        {
-            CGContextSetFillColorWithColor(context, [UIColor colorWithHexString:COLOR_SECONDARY].CGColor);
-            CGContextFillPath(context);
-        }
         
+        CGContextRestoreGState(context);
+    } else if (_state == SSCalendarDayCellStateToday) {
+        CGRect circleRect = CGRectMake(0, 0, 40.0f, 40.0f);
+        circleRect.origin.x = (rect.size.width - circleRect.size.width) / 2;
+        circleRect.origin.y = (rect.size.height - circleRect.size.height) / 2;
+
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSaveGState(context);
+        CGContextAddEllipseInRect(context, circleRect);
+        CGContextSetFillColorWithColor(context, [UIColor colorWithHexString:COLOR_SECONDARY].CGColor);
+        CGContextFillPath(context);
         CGContextRestoreGState(context);
     }
     

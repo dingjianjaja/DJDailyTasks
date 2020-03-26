@@ -15,4 +15,11 @@
 #import "MJExtension.h"
 
 
+
+
+
+
+#define KLOCAL_FILE_PATH [NSHomeDirectory() stringByAppendingString:@"/Documents/local"]
+#define KAIRDROP_RECIVED_FILE_PATH [NSHomeDirectory() stringByAppendingString:@"/Documents/Inbox"]
+
 #endif /* PrefixHeader_pch */

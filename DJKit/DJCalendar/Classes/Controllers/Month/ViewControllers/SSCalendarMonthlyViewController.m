@@ -176,44 +176,28 @@
     DJTaskListOfDayVC *vc = [[DJTaskListOfDayVC alloc] init];
     vc.currentDateStr = dateStr;
     // 点击当天的时候如果没有当天的数据，创建
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-
-    NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"DateListModel"
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(dateStr LIKE %@)",dateStr];
-    [fetchRequest setPredicate:predicate];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-
-    DateListModel *dateModel;
-    if (fetchedObjects.count == 0) {
+    if (cell.dateListModel == nil) {
         // 创建
-        dateModel = [NSEntityDescription insertNewObjectForEntityForName:@"DateListModel" inManagedObjectContext:appDelegate.persistentContainer.viewContext];
+        AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        DateListModel *dateModel = [NSEntityDescription insertNewObjectForEntityForName:@"DateListModel" inManagedObjectContext:appDelegate.persistentContainer.viewContext];
         dateModel.dateStr = dateStr;
         dateModel.completionLevel = 0.0;
+        cell.dateListModel = dateModel;
         [appDelegate saveContext];
-    }else{
-        dateModel = fetchedObjects.firstObject;
     }
 
-    vc.dateModel = dateModel;
-
-//    __block CGFloat originCopletionLevel = dateModel.completionLevel;
-//    __weak typeof(self) weakSelf = self;
-//    vc.refreshDateBlcok = ^{
-//        if (originCopletionLevel != dateModel.completionLevel) {
-//            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-//        }
-//    };
+    vc.dateModel = cell.dateListModel;
+    
+    __block CGFloat originCopletionLevel = cell.dateListModel.completionLevel;
+    __weak typeof(self) weakSelf = self;
+    vc.refreshDateBlcok = ^{
+        if (originCopletionLevel != cell.dateListModel.completionLevel || originCopletionLevel == 0) {
+            [weakSelf.dataSource.view reloadItemsAtIndexPaths:@[indexPath]];
+        }
+    };
 
     [self.navigationController pushViewController:vc animated:YES];
 
-
-
-//    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 

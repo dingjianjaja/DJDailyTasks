@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F00B389B242C7FB200FD0524 /* DJGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = F00B389A242C7FB200FD0524 /* DJGlobalData.m */; };
 		F04C52D42413F2E400F91A88 /* SSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C52782413F2E300F91A88 /* SSCache.m */; };
 		F04C52D52413F2E400F91A88 /* SSMonthNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C52792413F2E300F91A88 /* SSMonthNode.m */; };
 		F04C52D62413F2E400F91A88 /* SSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C527A2413F2E400F91A88 /* SSEvent.m */; };
@@ -84,6 +85,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F00B3899242C7FB200FD0524 /* DJGlobalData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJGlobalData.h; sourceTree = "<group>"; };
+		F00B389A242C7FB200FD0524 /* DJGlobalData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGlobalData.m; sourceTree = "<group>"; };
 		F04C52772413F2E300F91A88 /* SSDayNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDayNode.h; sourceTree = "<group>"; };
 		F04C52782413F2E300F91A88 /* SSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCache.m; sourceTree = "<group>"; };
 		F04C52792413F2E300F91A88 /* SSMonthNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMonthNode.m; sourceTree = "<group>"; };
@@ -527,6 +530,8 @@
 				F061DA642429A1F800081797 /* DJDateListModelManager.m */,
 				F061DA662429A20A00081797 /* DJTaskListModelManager.h */,
 				F061DA672429A20A00081797 /* DJTaskListModelManager.m */,
+				F00B3899242C7FB200FD0524 /* DJGlobalData.h */,
+				F00B389A242C7FB200FD0524 /* DJGlobalData.m */,
 			);
 			path = Utilits;
 			sourceTree = "<group>";
@@ -751,6 +756,7 @@
 				F061DA682429A20A00081797 /* DJTaskListModelManager.m in Sources */,
 				F04C52D62413F2E400F91A88 /* SSEvent.m in Sources */,
 				F04C52E22413F2E400F91A88 /* SSCalendarAnnualCell.m in Sources */,
+				F00B389B242C7FB200FD0524 /* DJGlobalData.m in Sources */,
 				F04C52F42413F2E400F91A88 /* SSCalendarDayCell.m in Sources */,
 				F04C52F82413F2E400F91A88 /* UIColor+StellarAdditions.m in Sources */,
 				F07BC02723FE233D00009D15 /* NSDate+DJAdd.m in Sources */,

@@ -7,6 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DateListModel+CoreDataClass.h"
 typedef NS_ENUM(NSInteger, SSCalendarDayCellStyle)
 {
     SSCalendarDayCellStyleMonthly,
@@ -30,6 +31,7 @@ typedef NS_ENUM(NSInteger, SSCalendarDayCellState)
 @property (nonatomic, strong) SSDayNode *day;
 @property (nonatomic, assign) SSCalendarDayCellStyle style;
 @property (nonatomic, assign) SSCalendarDayCellState state;
+@property (nonatomic, retain) DateListModel *dateListModel;
 @property (nonatomic, strong) IBOutlet UILabel *label;
 
 @end

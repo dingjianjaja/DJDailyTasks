@@ -13,6 +13,7 @@
 #import "SSDayNode.h"
 #import "SSEvent.h"
 #import "SSConstants.h"
+#import "DateListModel+CoreDataClass.h"
 
 @implementation SSDataController
 
@@ -84,5 +85,10 @@
     [_calendarCache putEvents:sortedResultsArray];
     [self updateCalendarYears];
 }
+
+- (void)setDateList:(NSArray *)dateList{
+    
+}
+
 
 @end

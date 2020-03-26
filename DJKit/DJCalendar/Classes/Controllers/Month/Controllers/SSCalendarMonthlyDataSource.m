@@ -15,6 +15,8 @@
 #import "SSDayNode.h"
 #import "SSConstants.h"
 
+#import "DJDateListModelManager.h"
+
 @implementation SSCalendarMonthlyDataSource
 
 
@@ -83,8 +85,7 @@
 }
 
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"DayCell";
     SSCalendarDayCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.style = SSCalendarDayCellStyleMonthly;
@@ -95,16 +96,19 @@
     
     SSYearNode *year = [_years objectAtIndex:yearIndex];
     SSMonthNode *month = [year.months objectAtIndex:monthIndex];
-    
     NSInteger dayIndex = indexPath.row - month.weekdayOfFirstDay;
     
-    if (dayIndex >= 0)
-    {
+    if (dayIndex >= 0){
         SSDayNode *day = [month.dayNodes objectAtIndex:dayIndex];
         cell.day = day;
-    }
-    else
-    {
+        
+        NSArray *fetchArr = [[DJDateListModelManager share] queryWithKeyValues:@{@"dateStr":[day.date stringWithFormat:@"yyyy-MM-dd"]}];
+        if (fetchArr.count > 0) {
+            cell.state = SSCalendarDayCellStateEvent;
+            cell.dateListModel = fetchArr.firstObject;
+            NSLog(@"dingjain%f",cell.dateListModel.completionLevel);
+        }
+    }else{
         cell.day = nil;
     }
 

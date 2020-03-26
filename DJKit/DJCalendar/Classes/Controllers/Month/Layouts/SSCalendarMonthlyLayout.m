@@ -32,7 +32,7 @@
 
 - (void)updateLayoutForBounds:(CGRect)bounds
 {
-    self.itemSize = CGSizeMake(bounds.size.width / 7, 43.0f);
+    self.itemSize = CGSizeMake(bounds.size.width / 7, 63.0f);
 }
 
 @end
