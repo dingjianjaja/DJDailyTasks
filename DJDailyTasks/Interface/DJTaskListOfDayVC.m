@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "TaskListModel+CoreDataProperties.h"
 #import "DJTaskListModelManager.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface DJTaskListOfDayVC ()<UITableViewDelegate,UITableViewDataSource,TaskListCellDelegate>
 
@@ -18,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *keybordBgViewH;
 @property (nonatomic, retain)NSIndexPath *currentEditingIndexPath;
+@property (weak, nonatomic) IBOutlet UIView *tableViewfooterView;
+@property (weak, nonatomic) IBOutlet UILabel *satisfactionDegreeLabel;
+@property (weak, nonatomic) IBOutlet UISlider *satisfactionDegreeSlider;
 
 @end
 
@@ -26,13 +30,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     // 监听键盘的弹起和收回
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleDone target:self action:@selector(addTaskAction)];
-    
+    [self setupUI];
     [self getData];
     
 }
@@ -89,6 +94,30 @@
     [appDelegate saveContext];
 }
 
+- (void)setupUI{
+    self.satisfactionDegreeLabel.text = [self satisfactionStringWithDegree:self.dateModel.satisfactionDegree];
+    self.satisfactionDegreeSlider.value = self.dateModel.satisfactionDegree;
+}
+
+
+- (NSString *)satisfactionStringWithDegree:(float)degree{
+    NSString *degreeStr;
+    if (degree == 0) {
+        degreeStr = @"0";
+    }else if(degree > 0 && degree <= 0.2){
+        degreeStr = [NSString stringWithFormat:@"😢%.2f",degree];
+    }else if(degree > 0.2 && degree <= 0.4){
+        degreeStr = [NSString stringWithFormat:@"😭%.2f",degree];
+    }else if(degree > 0.4 && degree <= 0.6){
+        degreeStr = [NSString stringWithFormat:@"💔%.2f",degree];
+    }else if(degree > 0.6 && degree <= 0.8){
+        degreeStr = [NSString stringWithFormat:@"🙂%.2f",degree];
+    }else if(degree > 0.8 && degree <= 1){
+        degreeStr = [NSString stringWithFormat:@"😄%.2f",degree];
+    }
+    return degreeStr;
+}
+
 - (void)keyBoardWillShow:(NSNotification *)notification{
     // 获取键盘高度
     CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -119,7 +148,7 @@
     newTaskM.title = @"";
     newTaskM.isDone = NO;
     newTaskM.dateStr = self.currentDateStr;
-    
+    newTaskM.timeStamp = [[NSDate date] timeIntervalSince1970];
     // 添加到日期类
     
     [appDelegate saveContext];
@@ -127,6 +156,11 @@
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.dataArr.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
+- (IBAction)satisfactionDegreeSliderAction:(UISlider *)sender {
+    AudioServicesPlaySystemSound(1520);
+    self.satisfactionDegreeLabel.text = [self satisfactionStringWithDegree:self.dateModel.satisfactionDegree];
+    self.dateModel.satisfactionDegree = sender.value;
+}
 
 #pragma mark -- tableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

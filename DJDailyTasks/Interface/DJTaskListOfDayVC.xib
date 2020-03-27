@@ -11,7 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DJTaskListOfDayVC">
             <connections>
                 <outlet property="keybordBgViewH" destination="GTw-kD-vyP" id="Lwx-TA-tvd"/>
+                <outlet property="satisfactionDegreeLabel" destination="9Z1-8s-kaB" id="m3H-T9-fpi"/>
+                <outlet property="satisfactionDegreeSlider" destination="cAe-pT-f0M" id="i6b-Bl-Rgf"/>
                 <outlet property="tableView" destination="SPW-Ai-h9C" id="jDi-3j-Vva"/>
+                <outlet property="tableViewfooterView" destination="c5d-1K-KAU" id="hcS-Nl-odL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,6 +26,42 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SPW-Ai-h9C">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="separatorColor" red="0.15686274509803921" green="1" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="iK4-kg-fMx" userLabel="TableViewHeaderView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="0Nd-HH-xmi"/>
+                    </view>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="c5d-1K-KAU" userLabel="TableViewFooterView">
+                        <rect key="frame" x="0.0" y="874" width="414" height="106"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="cAe-pT-f0M">
+                                <rect key="frame" x="101" y="38" width="284" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="satisfactionDegreeSliderAction:" destination="-1" eventType="valueChanged" id="bzr-3U-LWy"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Z1-8s-kaB">
+                                <rect key="frame" x="323" y="24" width="61" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="自评分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5W-Z0-63M">
+                                <rect key="frame" x="27" y="43" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="vYP-5Q-nLp"/>
+                    </view>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="kSt-iH-mww"/>
                         <outlet property="delegate" destination="-1" id="Szz-Uq-fMJ"/>

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F00B389B242C7FB200FD0524 /* DJGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = F00B389A242C7FB200FD0524 /* DJGlobalData.m */; };
+		F042A098242DF19D00F6270A /* SystemSoundTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F042A096242DF19D00F6270A /* SystemSoundTestVC.m */; };
+		F042A099242DF19D00F6270A /* SystemSoundTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F042A097242DF19D00F6270A /* SystemSoundTestVC.xib */; };
 		F04C52D42413F2E400F91A88 /* SSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C52782413F2E300F91A88 /* SSCache.m */; };
 		F04C52D52413F2E400F91A88 /* SSMonthNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C52792413F2E300F91A88 /* SSMonthNode.m */; };
 		F04C52D62413F2E400F91A88 /* SSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C527A2413F2E400F91A88 /* SSEvent.m */; };
@@ -87,6 +89,9 @@
 /* Begin PBXFileReference section */
 		F00B3899242C7FB200FD0524 /* DJGlobalData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJGlobalData.h; sourceTree = "<group>"; };
 		F00B389A242C7FB200FD0524 /* DJGlobalData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGlobalData.m; sourceTree = "<group>"; };
+		F042A095242DF19D00F6270A /* SystemSoundTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSoundTestVC.h; sourceTree = "<group>"; };
+		F042A096242DF19D00F6270A /* SystemSoundTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSoundTestVC.m; sourceTree = "<group>"; };
+		F042A097242DF19D00F6270A /* SystemSoundTestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SystemSoundTestVC.xib; sourceTree = "<group>"; };
 		F04C52772413F2E300F91A88 /* SSDayNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDayNode.h; sourceTree = "<group>"; };
 		F04C52782413F2E300F91A88 /* SSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCache.m; sourceTree = "<group>"; };
 		F04C52792413F2E300F91A88 /* SSMonthNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMonthNode.m; sourceTree = "<group>"; };
@@ -624,6 +629,9 @@
 				F061DA3A24299F8B00081797 /* DJAirdropVC.h */,
 				F061DA3B24299F8B00081797 /* DJAirdropVC.m */,
 				F061DA3C24299F8B00081797 /* DJAirdropVC.xib */,
+				F042A095242DF19D00F6270A /* SystemSoundTestVC.h */,
+				F042A096242DF19D00F6270A /* SystemSoundTestVC.m */,
+				F042A097242DF19D00F6270A /* SystemSoundTestVC.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -728,6 +736,7 @@
 				F061DA612429A08F00081797 /* LICENSE in Resources */,
 				F061DA3E24299F8C00081797 /* DJAirdropVC.xib in Resources */,
 				F07BC01723FD109200009D15 /* DJTaskListTableViewCell.xib in Resources */,
+				F042A099242DF19D00F6270A /* SystemSoundTestVC.xib in Resources */,
 				F0AF056E23FCD9FE0005F522 /* Assets.xcassets in Resources */,
 				F04C52EC2413F2E400F91A88 /* SSCalendarDailyViewController.xib in Resources */,
 				F04C52F52413F2E400F91A88 /* SSCalendarDayCell.xib in Resources */,
@@ -783,6 +792,7 @@
 				F07BC01623FD109200009D15 /* DJTaskListTableViewCell.m in Sources */,
 				F04C52F32413F2E400F91A88 /* SSCalendarEventsTableViewController.m in Sources */,
 				F04C52DC2413F2E400F91A88 /* SSCalendarMonthlyViewController.m in Sources */,
+				F042A098242DF19D00F6270A /* SystemSoundTestVC.m in Sources */,
 				F04C52F72413F2E400F91A88 /* SSStyles.m in Sources */,
 				F04C52EB2413F2E400F91A88 /* SSCalendarEventTableViewCell.m in Sources */,
 				F061DA652429A1F800081797 /* DJDateListModelManager.m in Sources */,

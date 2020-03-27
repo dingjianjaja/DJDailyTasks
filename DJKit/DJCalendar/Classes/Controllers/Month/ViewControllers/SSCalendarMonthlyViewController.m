@@ -189,9 +189,10 @@
     vc.dateModel = cell.dateListModel;
     
     __block CGFloat originCopletionLevel = cell.dateListModel.completionLevel;
+    __block CGFloat originSatisfactionLevel = cell.dateListModel.satisfactionDegree;
     __weak typeof(self) weakSelf = self;
     vc.refreshDateBlcok = ^{
-        if (originCopletionLevel != cell.dateListModel.completionLevel || originCopletionLevel == 0) {
+        if (originCopletionLevel != cell.dateListModel.completionLevel || originCopletionLevel == 0 || originSatisfactionLevel != cell.dateListModel.satisfactionDegree) {
             [weakSelf.dataSource.view reloadItemsAtIndexPaths:@[indexPath]];
         }
     };

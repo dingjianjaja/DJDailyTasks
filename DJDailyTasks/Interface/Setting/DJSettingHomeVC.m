@@ -9,6 +9,7 @@
 #import "DJSettingHomeVC.h"
 #import "DJBluetoothSetVC.h"
 #import "DJAirdropVC.h"
+#import "SystemSoundTestVC.h"
 
 @interface DJSettingHomeVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -38,7 +39,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -53,11 +54,16 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
             break;
-        case 1:{
-            cell.textLabel.text = @"airdrop";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-            
+            case 1:{
+                cell.textLabel.text = @"airdrop";
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            break;
+            case 2:{
+                cell.textLabel.text = @"SoundID 测试";
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+                break;
         default:
             break;
     }
@@ -77,6 +83,13 @@
             DJAirdropVC *vc = [[DJAirdropVC alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
+            break;
+        case 2:{
+            SystemSoundTestVC *vc = [[SystemSoundTestVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
         default:
             break;
     }

@@ -161,7 +161,10 @@
         circleRect.origin.y = (rect.size.height - circleRect.size.height) / 2;
 
         CGContextRef context = UIGraphicsGetCurrentContext();
+        // 设置顶点圆头
+        CGContextSetLineCap(context, kCGLineCapRound);
         CGContextSaveGState(context);
+        CGContextSetLineWidth(context, 4);
         CGContextAddEllipseInRect(context, circleRect);
         CGContextSetStrokeColorWithColor(context, [UIColor colorWithHexString:COLOR_BGVIEW_CYCLE].CGColor);
         CGContextDrawPath(context, kCGPathStroke);
@@ -170,6 +173,12 @@
         if (self.dateListModel != nil) {
             CGContextSetStrokeColorWithColor(context, [UIColor colorWithHexString:COLOR_SECONDARY].CGColor);
             CGContextAddArc(context, rect.size.width / 2, rect.size.height/2, 20, -M_PI_2, self.dateListModel.completionLevel * 2 * M_PI - M_PI_2, 0);
+            CGContextDrawPath(context, kCGPathStroke);
+        }
+        // 绘制 满意度百分比
+        if (self.dateListModel != nil) {
+            CGContextSetStrokeColorWithColor(context, [UIColor colorWithHexString:@"28FF8A"].CGColor);
+            CGContextAddArc(context, rect.size.width / 2, rect.size.height/2, 16, -M_PI_2, self.dateListModel.satisfactionDegree * 2 * M_PI - M_PI_2, 0);
             CGContextDrawPath(context, kCGPathStroke);
         }
         
