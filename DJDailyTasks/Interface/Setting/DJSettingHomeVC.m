@@ -10,6 +10,7 @@
 #import "DJBluetoothSetVC.h"
 #import "DJAirdropVC.h"
 #import "SystemSoundTestVC.h"
+#import "DJLineChartVC.h"
 
 @interface DJSettingHomeVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -39,7 +40,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -54,16 +55,21 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
             break;
-            case 1:{
-                cell.textLabel.text = @"airdrop";
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            }
+        case 1:{
+            cell.textLabel.text = @"airdrop";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
             break;
-            case 2:{
-                cell.textLabel.text = @"SoundID 测试";
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            }
-                break;
+        case 2:{
+            cell.textLabel.text = @"SoundID 测试";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+            break;
+        case 3:{
+            cell.textLabel.text = @"查看图表";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+            break;
         default:
             break;
     }
@@ -86,6 +92,11 @@
             break;
         case 2:{
             SystemSoundTestVC *vc = [[SystemSoundTestVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 3:{
+            DJLineChartVC *vc = [[DJLineChartVC alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

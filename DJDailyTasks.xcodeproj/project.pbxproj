@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		F00B389B242C7FB200FD0524 /* DJGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = F00B389A242C7FB200FD0524 /* DJGlobalData.m */; };
+		F039CC6424346BDB00D5EF13 /* DJLineChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F039CC6224346BDB00D5EF13 /* DJLineChartVC.m */; };
+		F039CC6524346BDB00D5EF13 /* DJLineChartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F039CC6324346BDB00D5EF13 /* DJLineChartVC.xib */; };
+		F039CC6924346DC300D5EF13 /* DJLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F039CC6724346C0900D5EF13 /* DJLineView.m */; };
+		F039CC6C24346E4200D5EF13 /* UIBezierPath+curved.m in Sources */ = {isa = PBXBuildFile; fileRef = F039CC6A24346E4200D5EF13 /* UIBezierPath+curved.m */; };
 		F042A098242DF19D00F6270A /* SystemSoundTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F042A096242DF19D00F6270A /* SystemSoundTestVC.m */; };
 		F042A099242DF19D00F6270A /* SystemSoundTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F042A097242DF19D00F6270A /* SystemSoundTestVC.xib */; };
 		F04C52D42413F2E400F91A88 /* SSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C52782413F2E300F91A88 /* SSCache.m */; };
@@ -89,6 +93,13 @@
 /* Begin PBXFileReference section */
 		F00B3899242C7FB200FD0524 /* DJGlobalData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJGlobalData.h; sourceTree = "<group>"; };
 		F00B389A242C7FB200FD0524 /* DJGlobalData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJGlobalData.m; sourceTree = "<group>"; };
+		F039CC6124346BDB00D5EF13 /* DJLineChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJLineChartVC.h; sourceTree = "<group>"; };
+		F039CC6224346BDB00D5EF13 /* DJLineChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJLineChartVC.m; sourceTree = "<group>"; };
+		F039CC6324346BDB00D5EF13 /* DJLineChartVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJLineChartVC.xib; sourceTree = "<group>"; };
+		F039CC6724346C0900D5EF13 /* DJLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJLineView.m; sourceTree = "<group>"; };
+		F039CC6824346C0900D5EF13 /* DJLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJLineView.h; sourceTree = "<group>"; };
+		F039CC6A24346E4200D5EF13 /* UIBezierPath+curved.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+curved.m"; sourceTree = "<group>"; };
+		F039CC6B24346E4200D5EF13 /* UIBezierPath+curved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+curved.h"; sourceTree = "<group>"; };
 		F042A095242DF19D00F6270A /* SystemSoundTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSoundTestVC.h; sourceTree = "<group>"; };
 		F042A096242DF19D00F6270A /* SystemSoundTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSoundTestVC.m; sourceTree = "<group>"; };
 		F042A097242DF19D00F6270A /* SystemSoundTestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SystemSoundTestVC.xib; sourceTree = "<group>"; };
@@ -241,6 +252,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F039CC6024346B9200D5EF13 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				F039CC6624346BE400D5EF13 /* View */,
+				F039CC6124346BDB00D5EF13 /* DJLineChartVC.h */,
+				F039CC6224346BDB00D5EF13 /* DJLineChartVC.m */,
+				F039CC6324346BDB00D5EF13 /* DJLineChartVC.xib */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		F039CC6624346BE400D5EF13 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F039CC6824346C0900D5EF13 /* DJLineView.h */,
+				F039CC6724346C0900D5EF13 /* DJLineView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F04C52732413F2A900F91A88 /* DJCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,6 +575,7 @@
 		F07BC00823FCDD4800009D15 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				F039CC6024346B9200D5EF13 /* Charts */,
 				F061DA622429A13700081797 /* Utilits */,
 				F07E1FB6241F1B43000EFE73 /* Setting */,
 				F07BC00A23FCDD8F00009D15 /* DJDateListVC.h */,
@@ -597,6 +629,8 @@
 		F07BC02423FE232200009D15 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				F039CC6B24346E4200D5EF13 /* UIBezierPath+curved.h */,
+				F039CC6A24346E4200D5EF13 /* UIBezierPath+curved.m */,
 				F07BC02523FE233D00009D15 /* NSDate+DJAdd.h */,
 				F07BC02623FE233D00009D15 /* NSDate+DJAdd.m */,
 				F07E1FC1241F5498000EFE73 /* NSString+DJAdd.h */,
@@ -736,6 +770,7 @@
 				F061DA612429A08F00081797 /* LICENSE in Resources */,
 				F061DA3E24299F8C00081797 /* DJAirdropVC.xib in Resources */,
 				F07BC01723FD109200009D15 /* DJTaskListTableViewCell.xib in Resources */,
+				F039CC6524346BDB00D5EF13 /* DJLineChartVC.xib in Resources */,
 				F042A099242DF19D00F6270A /* SystemSoundTestVC.xib in Resources */,
 				F0AF056E23FCD9FE0005F522 /* Assets.xcassets in Resources */,
 				F04C52EC2413F2E400F91A88 /* SSCalendarDailyViewController.xib in Resources */,
@@ -769,6 +804,7 @@
 				F04C52F42413F2E400F91A88 /* SSCalendarDayCell.m in Sources */,
 				F04C52F82413F2E400F91A88 /* UIColor+StellarAdditions.m in Sources */,
 				F07BC02723FE233D00009D15 /* NSDate+DJAdd.m in Sources */,
+				F039CC6C24346E4200D5EF13 /* UIBezierPath+curved.m in Sources */,
 				F061DA5C2429A08F00081797 /* NSObject+MJProperty.m in Sources */,
 				F04C52E52413F2E400F91A88 /* SSCalendarAnnualLayout.m in Sources */,
 				F0AF057423FCD9FE0005F522 /* main.m in Sources */,
@@ -780,6 +816,7 @@
 				F04C52EF2413F2E400F91A88 /* SSCalendarDayLayout.m in Sources */,
 				F061DA602429A08F00081797 /* MJFoundation.m in Sources */,
 				F04C52EE2413F2E400F91A88 /* SSCalendarWeekLayout.m in Sources */,
+				F039CC6424346BDB00D5EF13 /* DJLineChartVC.m in Sources */,
 				F061DA572429A08F00081797 /* MJPropertyType.m in Sources */,
 				F07E1FBF241F2A13000EFE73 /* DJBluetoothSetVC.m in Sources */,
 				F07BC00C23FCDD8F00009D15 /* DJDateListVC.m in Sources */,
@@ -811,6 +848,7 @@
 				F061DA5B2429A08F00081797 /* MJExtensionConst.m in Sources */,
 				F07E1FBA241F1B80000EFE73 /* DJSettingHomeVC.m in Sources */,
 				F07BC01023FD0F1F00009D15 /* DJTaskListOfDayVC.m in Sources */,
+				F039CC6924346DC300D5EF13 /* DJLineView.m in Sources */,
 				F061DA582429A08F00081797 /* NSObject+MJKeyValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
