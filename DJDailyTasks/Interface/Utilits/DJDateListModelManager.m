@@ -42,6 +42,8 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"DateListModel" inManagedObjectContext:self.context];
     [fetchRequest setEntity:entity];
+    NSSortDescriptor *sortByDate = [[NSSortDescriptor alloc] initWithKey:@"dateStr" ascending:YES selector:@selector(compare:)];
+    [fetchRequest setSortDescriptors:@[sortByDate]];
     if (conditionDic != nil && conditionDic.allKeys.count != 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:conditionStr];
         [fetchRequest setPredicate:predicate];

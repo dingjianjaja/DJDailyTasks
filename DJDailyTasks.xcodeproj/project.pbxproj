@@ -12,6 +12,8 @@
 		F039CC6524346BDB00D5EF13 /* DJLineChartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F039CC6324346BDB00D5EF13 /* DJLineChartVC.xib */; };
 		F039CC6924346DC300D5EF13 /* DJLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F039CC6724346C0900D5EF13 /* DJLineView.m */; };
 		F039CC6C24346E4200D5EF13 /* UIBezierPath+curved.m in Sources */ = {isa = PBXBuildFile; fileRef = F039CC6A24346E4200D5EF13 /* UIBezierPath+curved.m */; };
+		F039CC722435DFC400D5EF13 /* KLineTipBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = F039CC712435DFC400D5EF13 /* KLineTipBoardView.m */; };
+		F039CC752435E07D00D5EF13 /* TipBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = F039CC732435E07C00D5EF13 /* TipBoardView.m */; };
 		F042A098242DF19D00F6270A /* SystemSoundTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F042A096242DF19D00F6270A /* SystemSoundTestVC.m */; };
 		F042A099242DF19D00F6270A /* SystemSoundTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F042A097242DF19D00F6270A /* SystemSoundTestVC.xib */; };
 		F04C52D42413F2E400F91A88 /* SSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F04C52782413F2E300F91A88 /* SSCache.m */; };
@@ -100,6 +102,10 @@
 		F039CC6824346C0900D5EF13 /* DJLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJLineView.h; sourceTree = "<group>"; };
 		F039CC6A24346E4200D5EF13 /* UIBezierPath+curved.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+curved.m"; sourceTree = "<group>"; };
 		F039CC6B24346E4200D5EF13 /* UIBezierPath+curved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+curved.h"; sourceTree = "<group>"; };
+		F039CC702435DFC400D5EF13 /* KLineTipBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineTipBoardView.h; sourceTree = "<group>"; };
+		F039CC712435DFC400D5EF13 /* KLineTipBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineTipBoardView.m; sourceTree = "<group>"; };
+		F039CC732435E07C00D5EF13 /* TipBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipBoardView.m; sourceTree = "<group>"; };
+		F039CC742435E07C00D5EF13 /* TipBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipBoardView.h; sourceTree = "<group>"; };
 		F042A095242DF19D00F6270A /* SystemSoundTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSoundTestVC.h; sourceTree = "<group>"; };
 		F042A096242DF19D00F6270A /* SystemSoundTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSoundTestVC.m; sourceTree = "<group>"; };
 		F042A097242DF19D00F6270A /* SystemSoundTestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SystemSoundTestVC.xib; sourceTree = "<group>"; };
@@ -266,6 +272,10 @@
 		F039CC6624346BE400D5EF13 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F039CC742435E07C00D5EF13 /* TipBoardView.h */,
+				F039CC732435E07C00D5EF13 /* TipBoardView.m */,
+				F039CC702435DFC400D5EF13 /* KLineTipBoardView.h */,
+				F039CC712435DFC400D5EF13 /* KLineTipBoardView.m */,
 				F039CC6824346C0900D5EF13 /* DJLineView.h */,
 				F039CC6724346C0900D5EF13 /* DJLineView.m */,
 			);
@@ -793,6 +803,7 @@
 				F07E1FC3241F5498000EFE73 /* NSString+DJAdd.m in Sources */,
 				F04C52E62413F2E400F91A88 /* SSCalendarAnnualDataSource.m in Sources */,
 				F04C52DD2413F2E400F91A88 /* SSCalendarMonthlyLayout.m in Sources */,
+				F039CC722435DFC400D5EF13 /* KLineTipBoardView.m in Sources */,
 				F04C52F92413F2E400F91A88 /* SSDimensions.m in Sources */,
 				F04C52E32413F2E400F91A88 /* SSCalendarAnnualViewController.m in Sources */,
 				F04C52ED2413F2E400F91A88 /* SSCalendarDailyViewController.m in Sources */,
@@ -812,6 +823,7 @@
 				F0AF056C23FCD9FD0005F522 /* DJDailyTasks.xcdatamodeld in Sources */,
 				F04C52E72413F2E400F91A88 /* SSCalendarAnnualHeaderView.m in Sources */,
 				F07BC01B23FD1BA100009D15 /* DJTaskListModel.m in Sources */,
+				F039CC752435E07D00D5EF13 /* TipBoardView.m in Sources */,
 				F061DA592429A08F00081797 /* MJProperty.m in Sources */,
 				F04C52EF2413F2E400F91A88 /* SSCalendarDayLayout.m in Sources */,
 				F061DA602429A08F00081797 /* MJFoundation.m in Sources */,

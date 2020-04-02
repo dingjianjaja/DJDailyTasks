@@ -142,11 +142,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL supportGesture;
 
+// 日期，横坐标
+@property (nonatomic, strong) NSArray *dates;
 
 
 
-
-- (void)drawChartWithData:(NSDictionary *)data;
+- (void)drawChartWithData:(NSArray *)data;
 
 - (void)updateChartWithData:(NSDictionary *)data;
 
