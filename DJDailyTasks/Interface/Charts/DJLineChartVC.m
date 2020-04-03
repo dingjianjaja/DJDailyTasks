@@ -11,8 +11,12 @@
 #import "DJDateListModelManager.h"
 #import "DateListModel+CoreDataClass.h"
 
-@interface DJLineChartVC ()
+@interface DJLineChartVC ()<DJLineViewdelegate>
 @property (weak, nonatomic) IBOutlet DJLineView *lineView;
+@property (weak, nonatomic) IBOutlet UILabel *dateStrLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *taskNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moodLabel;
 
 @end
 
@@ -29,10 +33,23 @@
         [valueArr addObject:[NSString stringWithFormat:@"%.2f",dateModel.completionLevel]];
     }
     self.lineView.dates = dateStrArr;
+    self.lineView.delegate = self;
     [self.lineView drawChartWithData:valueArr];
 }
 
 
+
+#pragma mark -- privateMethod
+
+#pragma mark -- actions
+
+#pragma mark -- delegate
+- (void)moveToPointWithKLineChartView:(DJLineView *)chartView xAxisStr:(NSString *)xAxisStr{
+    self.dateStrLabel.text = xAxisStr;
+}
+
+
+#pragma mark -- lazyloading
 
 
 @end

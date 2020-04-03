@@ -10,8 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+@class DJLineView;
+@protocol DJLineViewdelegate <NSObject>
+
+- (void)moveToPointWithKLineChartView:(DJLineView*)chartView xAxisStr:(NSString*)xAxisStr;
+
+- (void)endToPointWithKLineChartView:(DJLineView*)chartView  xAxisStr:(NSString*)xAxisStr;
+
+@end
+
 @interface DJLineView : UIView
 
+@property (nonatomic, assign)id<DJLineViewdelegate> delegate;
 
 
 /**

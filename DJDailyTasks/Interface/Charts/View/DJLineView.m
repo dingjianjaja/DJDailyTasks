@@ -30,13 +30,6 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
 
 @property (nonatomic, assign) CGFloat minLowValue;
 
-@property (nonatomic, assign) CGFloat maxVolValue;
-
-@property (nonatomic, assign) CGFloat minVolValue;
-
-@property (nonatomic, assign) CGFloat maxKDJValue;
-
-@property (nonatomic, assign) CGFloat maxMACDValue;
 
 //手势
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
@@ -114,14 +107,15 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
     if (!self.contexts || self.contexts.count == 0) {
         return;
     }
-    
-    [self.xAxisContext removeAllObjects];
-    CGFloat xAxis0 = _kLinePadding;
-    for (NSString *valueStr in [_contexts subarrayWithRange:NSMakeRange(self.startDrawIndex, self.kLineDrawNum)]) {
-        [self.xAxisContext setObject:@([_contexts indexOfObject:valueStr]) forKey:@(xAxis0 + _kLineWidth)];
-        CGFloat width = _kLineWidth;
-        xAxis0 += width + _kLinePadding;
+    if (self.kLineWidth > 20) {
+        // 画条形图
+        [self drawBar];
+    }else{
+        // 画线
+        [self drawLine];
     }
+    
+    
     
     
     //x坐标轴长度
@@ -132,58 +126,11 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
     
     //坐标轴
     [self drawAxisInRect:rect];
-//
+    // 画时间
     [self drawTimeAxis];
     
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(context, 1);
-    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-    // path
-    CGPathRef path1;
-    
-    
-    UIBezierPath *path;
-    CGFloat kLineWidth = self.kLineWidth;
-    CGFloat kLinePadding = self.kLinePadding;
-    CGFloat maxMinValue = self.maxHighValue - self.minLowValue;
-    CGFloat xAxis = self.leftMargin + 0.5*kLineWidth + kLinePadding;
-    CGFloat scale = (self.frame.size.height - self.topMargin - self.bottomMargin) / maxMinValue;
-    
-    
-    for (NSString *numStr in [_contexts subarrayWithRange:NSMakeRange(self.startDrawIndex, self.kLineDrawNum)]) {
-        CGFloat maValue;
-        if (numStr.floatValue == 0) {
-            maValue = 0 - self.minLowValue;
-        }else{
-            maValue = numStr.floatValue - self.minLowValue;
-        }
-        CGFloat yAxis = self.frame.size.height - self.bottomMargin - maValue*scale;
-        CGPoint maPoint = CGPointMake(xAxis, yAxis);
-
-        if (yAxis < self.topMargin || yAxis > self.frame.size.height - self.bottomMargin) {
-            xAxis += kLinePadding + kLinePadding;
-            continue;
-        }
-        if (!path) {
-            path = [UIBezierPath bezierPath];
-            [path moveToPoint:maPoint];
-        }else{
-            [path addLineToPoint:maPoint];
-        }
-        xAxis += kLineWidth + kLinePadding;
-    }
-    path = [path smoothedPathWithGranularity:1];
-    path1 = path.CGPath;
-    
-    
-    CGContextAddPath(context, path1);
-    CGContextStrokePath(context);
 }
-
-
-
-
 
 
 - (void)_setup{
@@ -279,7 +226,6 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
 
 - (void)drawChartWithData:(NSArray *)dataArr{
     self.contexts = dataArr;
-    
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:@"000000" attributes:@{NSFontAttributeName:self.yAxisTitleFont, NSForegroundColorAttributeName:self.yAxisTitleColor}];
     
     CGSize size = [attString boundingRectWithSize:CGSizeMake(MAXFLOAT, self.yAxisTitleFont.lineHeight) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
@@ -289,7 +235,7 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
     self.kLineDrawNum = floor(((self.frame.size.width - self.leftMargin - self.rightMargin - _kLinePadding) / (self.kLineWidth + self.kLinePadding)));
     
     //确定从第几个开始画
-    self.startDrawIndex = self.contexts.count > 0 ? self.contexts.count - self.kLineDrawNum : 0;
+    self.startDrawIndex = self.contexts.count > self.kLineDrawNum ? self.contexts.count - self.kLineDrawNum : 0;
     
     [self resetmaxAndMin];
     
@@ -306,7 +252,6 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
 #pragma mark - （坐标图）
 - (void)drawAxisInRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
     //k线边框
     CGRect strokeRect = CGRectMake(self.leftMargin, self.topMargin, self.xAxisWidth, self.yAxisHeight);
     CGContextSetLineWidth(context, self.axisShadowWidth);
@@ -347,13 +292,9 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
 }
 
 - (void)drawTimeAxis {
-    
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
     CGFloat quarteredWidth = self.xAxisWidth/4.0;
     NSInteger avgDrawCount = ceil(quarteredWidth/(_kLinePadding + _kLineWidth));
-    
     CGFloat xAxis = self.leftMargin + _kLineWidth/2.0 + _kLinePadding;
     //画4条虚线
     for (int i = 0; i < 4; i ++) {
@@ -367,10 +308,8 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
         CGContextBeginPath(context);
         CGContextMoveToPoint(context, xAxis, self.topMargin + 1.25);    //开始画线
         CGContextAddLineToPoint(context, xAxis, self.topMargin + self.yAxisHeight - 1.25);
-        
         CGContextMoveToPoint(context, xAxis, self.topMargin +self.yAxisHeight+self.timeAxisHeight+1.25);    //开始画线
         CGContextAddLineToPoint(context, xAxis, self.frame.size.height-1.25);
-        
         CGContextStrokePath(context);
         
         //x轴坐标
@@ -389,6 +328,127 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
     CGContextSetLineDash(context, 0, 0, 0);
     
 }
+
+/// 画线图
+- (void)drawLine{
+    [self.xAxisContext removeAllObjects];
+    CGFloat xAxis0 = _kLinePadding;
+    NSInteger itemCount = self.kLineDrawNum;
+    if (self.kLineDrawNum > _contexts.count) {
+        itemCount = _contexts.count;
+    }
+    for (NSString *valueStr in [_contexts subarrayWithRange:NSMakeRange(self.startDrawIndex, itemCount)]) {
+        [self.xAxisContext setObject:@([_contexts indexOfObject:valueStr]) forKey:@(xAxis0 + _kLineWidth)];
+        CGFloat width = _kLineWidth;
+        xAxis0 += width + _kLinePadding;
+    }
+    
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 1);
+    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+    // path
+    CGPathRef path1;
+    
+    UIBezierPath *path;
+    CGFloat kLineWidth = self.kLineWidth;
+    CGFloat kLinePadding = self.kLinePadding;
+    CGFloat maxMinValue = self.maxHighValue - self.minLowValue;
+    CGFloat xAxis = self.leftMargin + 0.5*kLineWidth + kLinePadding;
+    CGFloat scale = (self.frame.size.height - self.topMargin - self.bottomMargin) / maxMinValue;
+    
+    
+    for (NSString *numStr in [_contexts subarrayWithRange:NSMakeRange(self.startDrawIndex, itemCount)]) {
+        CGFloat maValue;
+        if (numStr.floatValue == 0) {
+            maValue = 0 - self.minLowValue;
+        }else{
+            maValue = numStr.floatValue - self.minLowValue;
+        }
+        CGFloat yAxis = self.frame.size.height - self.bottomMargin - maValue*scale;
+        CGPoint maPoint = CGPointMake(xAxis, yAxis);
+
+        if (yAxis < self.topMargin || yAxis > self.frame.size.height - self.bottomMargin) {
+            xAxis += kLinePadding + kLinePadding;
+            continue;
+        }
+        if (!path) {
+            path = [UIBezierPath bezierPath];
+            [path moveToPoint:maPoint];
+        }else{
+            [path addLineToPoint:maPoint];
+        }
+        xAxis += kLineWidth + kLinePadding;
+    }
+    path = [path smoothedPathWithGranularity:1];
+    path1 = path.CGPath;
+    
+    
+    CGContextAddPath(context, path1);
+    CGContextStrokePath(context);
+}
+
+
+/// 画条形图
+- (void)drawBar{
+    [self.xAxisContext removeAllObjects];
+    CGFloat xAxis0 = _kLinePadding;
+    NSInteger itemCount = self.kLineDrawNum;
+    if (self.kLineDrawNum > _contexts.count) {
+        itemCount = _contexts.count;
+    }
+    for (NSString *valueStr in [_contexts subarrayWithRange:NSMakeRange(self.startDrawIndex, itemCount)]) {
+        [self.xAxisContext setObject:@([_contexts indexOfObject:valueStr]) forKey:@(xAxis0 + _kLineWidth)];
+        CGFloat width = _kLineWidth;
+        xAxis0 += width + _kLinePadding;
+    }
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, self.kLineWidth);
+    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+    // path
+    CGPathRef path1;
+    
+    UIBezierPath *path;
+    CGFloat kLineWidth = self.kLineWidth;
+    CGFloat kLinePadding = self.kLinePadding;
+    CGFloat maxMinValue = self.maxHighValue - self.minLowValue;
+    CGFloat xAxis = self.leftMargin + 0.5*kLineWidth + kLinePadding;
+    CGFloat scale = (self.frame.size.height - self.topMargin - self.bottomMargin) / maxMinValue;
+    
+    for (NSString *numStr in [_contexts subarrayWithRange:NSMakeRange(self.startDrawIndex, itemCount)]) {
+        CGFloat maValue;
+        if (numStr.floatValue == 0) {
+            maValue = 0 - self.minLowValue;
+        }else{
+            maValue = numStr.floatValue - self.minLowValue;
+        }
+        CGFloat yAxis = self.frame.size.height - self.bottomMargin - maValue*scale;
+        CGPoint maPoint = CGPointMake(xAxis, yAxis);
+        CGPoint startPoint = CGPointMake(xAxis, self.frame.size.height - self.bottomMargin);
+        if (yAxis < self.topMargin || yAxis > self.frame.size.height - self.bottomMargin) {
+            xAxis += kLinePadding + kLinePadding;
+            continue;
+        }
+        if (!path) {
+            path = [UIBezierPath bezierPath];
+        }
+        
+        [path moveToPoint:startPoint];
+        [path addLineToPoint:maPoint];
+        
+        xAxis += kLineWidth + kLinePadding;
+    }
+    path1 = path.CGPath;
+    CGContextAddPath(context, path1);
+    CGContextStrokePath(context);
+    
+    
+}
+
+
+
+
 
 - (CGFloat)maxValueWithArr:(NSArray *)arr{
     CGFloat max = 0;
@@ -420,7 +480,7 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
 
 - (void)resetmaxAndMin{
     NSArray *drawContext = self.contexts;
-    if (self.yAxisTitleIsChange) {
+    if (self.yAxisTitleIsChange && self.contexts.count > self.kLineDrawNum) {
         drawContext = [self.contexts subarrayWithRange:NSMakeRange(self.startDrawIndex, self.kLineDrawNum)];
     }
     for (int i = 0; i < drawContext.count; i++) {
@@ -440,16 +500,12 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
 }
 
 - (void)resetLeftMargin{
-    CGFloat maxValue = self.maxKDJValue;
+    CGFloat maxValue = self.maxHighValue;
     
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f",maxValue] attributes:@{NSFontAttributeName:self.yAxisTitleFont,NSForegroundColorAttributeName:self.yAxisTitleColor}];
     CGSize size = [attString boundingRectWithSize:CGSizeMake(MAXFLOAT, self.yAxisTitleFont.lineHeight) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
     self.leftMargin = size.width + 4.0f;
 }
-
-
-
-
 
 
 
@@ -467,7 +523,7 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
     NSInteger offsetIndex = fabs(touchPoint.x*2/(self.kLineWidth > self.maxKLineWidth/2.0 ? 16.0f : 8.0));
     
     [self postNotificationWithGestureRecognizerStatus:panGesture.state];
-    if (!self.scrollEnable || self.contexts.count == 0 || offsetIndex == 0) {
+    if (!self.scrollEnable || self.contexts.count == 0 || offsetIndex == 0 || self.contexts.count < self.kLineDrawNum) {
         return;
     }
     
@@ -547,10 +603,6 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
         self.priceLbl.hidden = YES;
         self.timeLbl.hidden = YES;
         [self.tipBoard hide];
-//        if ([self.delegate respondsToSelector:@selector(endToPointWithKLineChartView:lineArr:)]) {
-//            NSArray  *arr =  [_contexts subarrayWithRange:NSMakeRange(self.startDrawIndex, self.kLineDrawNum)];
-//            [self.delegate endToPointWithKLineChartView:self lineArr:[arr lastObject]];
-//        }
     } else {
         CGPoint touchPoint = [longGesture locationInView:self];
         [self.xAxisContext enumerateKeysAndObjectsUsingBlock:^(NSNumber *xAxisKey, NSNumber *indexObject, BOOL *stop) {
@@ -578,9 +630,9 @@ NSString *const KLineKeyEndOfUserInterfaceNotification = @"KLineKeyEndOfUserInte
 
 - (void)configUIWithLine:(NSString *)line atPoint:(CGPoint)point {
     
-//    if ([self.delegate respondsToSelector:@selector(moveToPointWithKLineChartView:lineArr:)]) {
-//        [self.delegate moveToPointWithKLineChartView:self lineArr:line];
-//    }
+    if ([self.delegate respondsToSelector:@selector(moveToPointWithKLineChartView:xAxisStr:)]) {
+        [self.delegate moveToPointWithKLineChartView:self xAxisStr:line];
+    }
     
     //十字线
     self.verticalCrossLine.hidden = NO;
